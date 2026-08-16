@@ -1,0 +1,11 @@
+{
+  "status": "ready",
+  "releaseState": "released",
+  "evidence": [
+    { "category": "pull_request", "source": "ADO PR", "location": "PR 44", "workItemIds": ["1001"], "state": "completed", "url": "https://example.test/pr/44", "comments": ["Validated customer onboarding"], "links": ["commit abc123"], "retrievedDate": "2026-04-01", "classification": "Fact", "confidence": "high", "basis": "" },
+    { "category": "commit", "source": "ADO Repository", "location": "abc123", "workItemIds": ["1001"], "status": "merged", "retrievedDate": "2026-04-02", "classification": "Fact", "confidence": "high", "basis": "" },
+    { "category": "pipeline", "source": "ADO Pipeline", "location": "Run 8", "links": ["https://example.test/_workitems/edit/1001"], "status": "succeeded", "retrievedDate": "2026-04-03", "workItemIds": ["1001"], "classification": "Fact", "confidence": "high", "basis": "" },
+    { "category": "deployment", "source": "ADO Deployment", "location": "Deploy 8", "links": ["1001"], "status": "succeeded", "retrievedDate": "2026-04-04", "workItemIds": ["1001"], "classification": "Fact", "confidence": "high", "basis": "" }
+  ],
+  "persistence": { "result": { "status": "persisted", "id": "EVD-TECH-<generated>", "path": "<workspace>\\BASS\\projects\\demo-customer-onboarding\\technical-evidence\\EVD-TECH-<generated>.md" } }
+}

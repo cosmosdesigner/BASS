@@ -1,0 +1,16 @@
+{
+  "projectName": "project",
+  "artifactType": "proposal",
+  "title": "Advisor enrolment queue",
+  "promoteTo": "user_story",
+  "evidence": [
+    {
+      "type": "ado_comment",
+      "source": "ADO WI 421 comment 3",
+      "location": "Advisor feedback",
+      "classification": "Inference",
+      "confidence": "medium",
+      "claim": "Advisors need a queue to review submitted enrolment requests."
+    }
+  ]
+}

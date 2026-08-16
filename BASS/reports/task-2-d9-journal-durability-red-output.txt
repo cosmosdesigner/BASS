@@ -1,0 +1,3 @@
+Pre-repair command: node BASS/integration/opencode/plugins/bass-ado-executor-journal-durability.red-test.mjs
+
+Expected pre-repair failure: journal creation catches no fsync failure and returns `local_import_failed`, while recovery restores with ordinary writes and unlinks the journal. Required explicit statuses are absent.

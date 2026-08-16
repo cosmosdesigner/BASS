@@ -1,0 +1,6 @@
+toolName: ado_update_work_item_field
+operation: update_field
+resourceType: work_item
+supportedInput: workItemId,field,before,after
+verifiedReadWrite: true
+verificationDate: 2026-08-15

@@ -1,0 +1,25 @@
+{
+  "artifactPath": "features/F-804-waived/feature.md",
+  "artifactVersion": "v1.0",
+  "status": "pass_with_advisories",
+  "findings": [{
+    "id": "REV-412ebb973c22b0fb",
+    "severity": "Major",
+    "check": "testability",
+    "evidence": "## Given/When/Then Acceptance Criteria at line 37 is nonconforming.",
+    "location": "features/F-804-waived/feature.md:37",
+    "fingerprint": "<integrity-hash>",
+    "impact": "The artifact has no testable acceptance criteria.",
+    "recommendation": "Provide cited canonical artifact content; do not infer missing content.",
+    "status": "waived",
+    "waiver": {
+      "decisionId": "DEC-804",
+      "path": "decisions/DEC-804-waiver.md",
+      "rationale": "The accountable owner accepts manual validation for this pilot.",
+      "residualRisk": "Registration behavior remains unverified until automated criteria are approved."
+    }
+  }],
+  "unresolvedQuestions": [],
+  "reviewDecision": "approval eligible",
+  "sources": [{ "path": "features/F-804-waived/feature.md", "location": "artifact" }]
+}

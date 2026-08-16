@@ -1,0 +1,7 @@
+{
+  "target": "F-001",
+  "extracts": [
+    { "category": "pipeline", "source": "ADO Pipeline", "location": "Run 9", "workItemIds": ["1001"], "status": "failed" },
+    { "category": "deployment", "source": "ADO Deployment", "location": "Deploy 9", "workItemIds": ["1001"], "status": "failed" }
+  ]
+}

@@ -1,0 +1,3 @@
+Pre-repair command: node BASS/integration/opencode/plugins/bass-ado-executor-journal-p1.red-test.mjs
+
+Observed expected failure: `cleanup_interrupted` is not implemented. Existing recovery restores every journal, including a completed import, and journal writes have no file/directory fsync instrumentation.

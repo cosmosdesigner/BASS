@@ -1,0 +1,8 @@
+{
+  "capabilities": {
+    "fields": { "toolName": "ado_update_repository", "operation": "update_field", "supportedInput": "workItemId,field,before,after", "verifiedReadWrite": true, "verificationDate": "2026-08-15" }
+  },
+  "fields": {
+    "title": { "adoFieldReference": "System.Title", "supportedWorkItemTypes": ["Feature"], "verificationStatus": "verified" }
+  }
+}
