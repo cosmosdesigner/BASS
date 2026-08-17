@@ -11,12 +11,13 @@
 
 ## Source Harnesses
 
-Configured harness IDs: `d5-context-brief`, `d5-read-capability-validation`, `d5-reader-boundary`, `d6-discovery`, `d7-creator-preview`, `d7-approved-persistence`, `d8-review`, `d8-improvement`, `d8-approved-improvement-persistence`, `d8-fixture-snapshots`, `d8-regressions`, `d9-executor`, `d9-core-findings`, `d9-recovery`, `d9-journal`, `d9-journal-p1`, `d9-journal-durability`, `d9-journal-cleanup`, `d9-read-capability-validation`, `d9-discovery-capability-validation`, `d9-typescript-wrapper-load`, `d10-technical-delivery`, `d10-fixture-harness`, `d11-orchestration`, `d11-fixture-harness`, `d11-typescript-plugin-load`
+Configured harness IDs: `p0-project-initialization-and-routing`, `d5-context-brief`, `d5-read-capability-validation`, `d5-reader-boundary`, `d6-discovery`, `d7-creator-preview`, `d7-approved-persistence`, `d8-review`, `d8-improvement`, `d8-approved-improvement-persistence`, `d8-fixture-snapshots`, `d8-regressions`, `d9-executor`, `d9-core-findings`, `d9-recovery`, `d9-journal`, `d9-journal-p1`, `d9-journal-durability`, `d9-journal-cleanup`, `d9-read-capability-validation`, `d9-discovery-capability-validation`, `d9-typescript-wrapper-load`, `d10-technical-delivery`, `d10-fixture-harness`, `d11-orchestration`, `d11-fixture-harness`, `d11-typescript-plugin-load`
 
-Executed harness IDs: `d5-context-brief`, `d5-read-capability-validation`, `d5-reader-boundary`, `d6-discovery`, `d7-creator-preview`, `d7-approved-persistence`, `d8-review`, `d8-improvement`, `d8-approved-improvement-persistence`, `d8-fixture-snapshots`, `d8-regressions`, `d9-executor`, `d9-core-findings`, `d9-recovery`, `d9-journal`, `d9-journal-p1`, `d9-journal-durability`, `d9-journal-cleanup`, `d9-read-capability-validation`, `d9-discovery-capability-validation`, `d9-typescript-wrapper-load`, `d10-technical-delivery`, `d10-fixture-harness`, `d11-orchestration`, `d11-fixture-harness`, `d11-typescript-plugin-load`
+Executed harness IDs: `p0-project-initialization-and-routing`, `d5-context-brief`, `d5-read-capability-validation`, `d5-reader-boundary`, `d6-discovery`, `d7-creator-preview`, `d7-approved-persistence`, `d8-review`, `d8-improvement`, `d8-approved-improvement-persistence`, `d8-fixture-snapshots`, `d8-regressions`, `d9-executor`, `d9-core-findings`, `d9-recovery`, `d9-journal`, `d9-journal-p1`, `d9-journal-durability`, `d9-journal-cleanup`, `d9-read-capability-validation`, `d9-discovery-capability-validation`, `d9-typescript-wrapper-load`, `d10-technical-delivery`, `d10-fixture-harness`, `d11-orchestration`, `d11-fixture-harness`, `d11-typescript-plugin-load`
 
 | Check | Source | Result |
 | --- | --- | --- |
+| P0 project initialization and routing | `BASS/integration/opencode/plugins/bass-p0.behavior-test.mjs` | pass |
 | D5 context brief | `BASS/integration/opencode/plugins/bass-context-brief.behavior-test.mjs` | pass |
 | D5 read capability validation | `BASS/integration/opencode/plugins/bass-validate-ado-read-capabilities.behavior-test.mjs` | pass |
 | D5 reader boundary | `BASS/integration/opencode/plugins/bass-reader-contract.behavior-test.mjs` | pass |
@@ -84,6 +85,7 @@ Missing Task 3 artifacts are portable readiness blockers, not test-runner errors
 | Required artifact | `BASS/docs/target-host-validation.md` | pass |
 | Required artifact | `BASS/docs/phase-2-backlog.md` | pass |
 | Required artifact | `BASS/docs/release-checklist.md` | pass |
+| Required artifact | `BASS/docs/workflow-examples.md` | pass |
 
 ## Target-Host Checks
 
