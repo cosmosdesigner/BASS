@@ -6,7 +6,7 @@ import { createHmac } from "node:crypto"
 import { createRequire } from "node:module"
 
 const require = createRequire(import.meta.url)
-const { initProject } = require("./bass-init-project.js")
+const { initProject, normalizeInitProjectInput } = require("./bass-init-project.js")
 const { projectStatus } = require("./bass-project-status.js")
 const { routeWorkflow } = require("./bass-route-workflow.js")
 
@@ -29,6 +29,21 @@ function fixture() {
 }
 
 function cleanup(directory) { fs.rmSync(directory, { recursive: true, force: true }) }
+
+test("P0 init tool boundary normalizes omitted Wiki URLs", () => {
+  const directory = fixture()
+  try {
+    const input = normalizeInitProjectInput({ projectName: "agentlab", projectTitle: "agentlab" }, directory)
+    assert.equal(input.functionalWikiUrl, "")
+    assert.equal(input.technicalWikiUrl, "")
+    const result = initProject(input)
+    assert.equal(result.status, "warning")
+    assert.equal(result.projectName, "agentlab")
+    assert.equal(result.gaps.length, 2)
+    assert.ok(result.gaps.every((gap) => gap.classification === "Question"))
+    assert.ok(fs.existsSync(path.join(directory, "BASS/projects/agentlab/project-context/context-registry.md")))
+  } finally { cleanup(directory) }
+})
 
 test("P0 init creates a clean project instead of cloning demo evidence", () => {
   const directory = fixture()

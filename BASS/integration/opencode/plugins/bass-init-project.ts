@@ -1,6 +1,18 @@
 import { type Plugin, tool } from "@opencode-ai/plugin"
-declare const require: (path: string) => { initProject: (input: unknown) => unknown }
-export const initProject = (input: unknown) => require("./bass-init-project.js").initProject(input)
+export type InitProjectInput = {
+  projectName: string
+  projectTitle?: string
+  functionalWikiUrl?: string
+  technicalWikiUrl?: string
+  directory?: string
+}
+declare const require: (path: string) => {
+  initProject: (input: InitProjectInput) => unknown
+  normalizeInitProjectInput: (args: InitProjectInput, directory: string) => InitProjectInput
+}
+const runtime = require("./bass-init-project.js")
+export const initProject = (input: InitProjectInput) => runtime.initProject(input)
+export const normalizeInitProjectInput = (args: InitProjectInput, directory: string) => runtime.normalizeInitProjectInput(args, directory)
 export const BassInitProjectPlugin: Plugin = async () => ({
   tool: {
     bass_init_project: tool({
@@ -11,7 +23,7 @@ export const BassInitProjectPlugin: Plugin = async () => ({
         functionalWikiUrl: tool.schema.string().optional(),
         technicalWikiUrl: tool.schema.string().optional(),
       },
-      async execute(args: any, context: any) { return initProject({ ...args, directory: context.directory }) },
+      async execute(args: InitProjectInput, context: { directory: string }) { return initProject(normalizeInitProjectInput(args, context.directory)) },
     }),
   },
 })

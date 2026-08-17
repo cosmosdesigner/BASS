@@ -42,6 +42,14 @@ function starterLog(kind, heading, columns, date) {
 function starterContext(title, heading, date, sections) {
   return `---\ntitle: "${title}"\nversion: v1.0\ncreated_date: ${date}\nupdated_date: ${date}\n---\n\n# ${heading}\n\n${sections.map((section) => `## ${section}\n\n`).join("")}## Changelog\n\n| Date | Version | Change | Reason | Related records |\n| --- | --- | --- | --- | --- |\n| ${date} | v1.0 | Initialized empty context file. | Explicit BASS project initialization. | None |\n`;
 }
+function normalizeInitProjectInput(args, directory) {
+  return {
+    ...args,
+    directory,
+    functionalWikiUrl: args.functionalWikiUrl ?? "",
+    technicalWikiUrl: args.technicalWikiUrl ?? ""
+  };
+}
 function initProject(input) {
   if (!input || typeof input !== "object") return blocked("invalid_input", "Initialization input must be an object.", "Provide one project name.");
   const directory = String(input.directory || "");
@@ -94,5 +102,5 @@ function initProject(input) {
     nextAction: missingSources.length ? `Configure ${missingSources.join(" and ")} in project-context/context-registry.md, then run /bass status ${projectName}.` : `Run /bass status ${projectName}.`
   };
 }
-const BassInitProjectPlugin = async () => ({ tool: { bass_init_project: tool({ description: "Initialize one contained BASS project scaffold without any Azure DevOps operation.", args: { projectName: tool.schema.string(), projectTitle: tool.schema.string().optional(), functionalWikiUrl: tool.schema.string().optional(), technicalWikiUrl: tool.schema.string().optional() }, async execute(args, context) { return initProject({ ...args, directory: context.directory }); } }) } });
-module.exports = { initProject, BassInitProjectPlugin };
+const BassInitProjectPlugin = async () => ({ tool: { bass_init_project: tool({ description: "Initialize one contained BASS project scaffold without any Azure DevOps operation.", args: { projectName: tool.schema.string(), projectTitle: tool.schema.string().optional(), functionalWikiUrl: tool.schema.string().optional(), technicalWikiUrl: tool.schema.string().optional() }, async execute(args, context) { return initProject(normalizeInitProjectInput(args, context.directory)); } }) } });
+module.exports = { initProject, normalizeInitProjectInput, BassInitProjectPlugin };
