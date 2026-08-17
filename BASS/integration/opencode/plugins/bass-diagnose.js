@@ -8,26 +8,16 @@ function report(sections) {
 function invalidProjectName(value) {
     return value.includes("/") || value.includes("\\") || value === "." || value === ".." || value.split(/[\\/]/).some((part) => part === "" || part === "." || part === "..");
 }
-function isDirectory(path) {
-    return existsSync(path) && statSync(path).isDirectory();
-}
+function isDirectory(path) { return existsSync(path) && statSync(path).isDirectory(); }
 function isAzureDevOpsWikiUrl(value) {
-    try {
-        const url = new URL(value);
-        return url.origin === "https://dev.azure.com" && /^\/[^/]+\/[^/]+\/_wiki\/wikis\/[^/]+(?:\/.*)?$/.test(url.pathname);
-    }
-    catch {
-        return false;
-    }
+    try { const url = new URL(value); return url.origin === "https://dev.azure.com" && /^\/[^/]+\/[^/]+\/_wiki\/wikis\/[^/]+(?:\/.*)?$/.test(url.pathname); }
+    catch { return false; }
 }
 function requiredWikiUrl(text, section) {
-    // Restrict URL extraction to the named section so unrelated registry URLs cannot satisfy this check.
     const lines = text.split(/\r?\n/);
     const start = lines.findIndex((line) => line === `## ${section}`);
     const end = lines.findIndex((line, index) => index > start && line.startsWith("## "));
-    const values = start < 0 ? [] : lines.slice(start + 1, end < 0 ? undefined : end)
-        .map((line) => line.match(/^- URL:\s*`?([^`\s]+)`?\s*$/)?.[1])
-        .filter((value) => Boolean(value));
+    const values = start < 0 ? [] : lines.slice(start + 1, end < 0 ? undefined : end).map((line) => line.match(/^- URL:\s*`?([^`\s]+)`?\s*$/)?.[1]).filter((value) => Boolean(value));
     return values.length === 1 ? values[0] : undefined;
 }
 export const BassDiagnosePlugin = async () => ({
@@ -45,65 +35,36 @@ export const BassDiagnosePlugin = async () => ({
                         { status: "warning", observed: "Not inspected because projectName failed deterministic preflight before filesystem access.", next: "Provide a valid project name and rerun the diagnostic." },
                     ]);
                 }
-                // Expected installation root: this plugin runs from target/.opencode/plugins and context.directory is target/.
                 const bassRoot = join(context.directory, "BASS");
                 const required = [
-                    "AGENTS.md",
-                    "projects",
-                    "rules",
-                    "rules/orchestration.md",
-                    "rules/access-control.md",
-                    "rules/provenance.md",
-                    "integration/opencode/agents/bass.md",
-                    "integration/opencode/agents/reader.md",
-                    "integration/opencode/agents/explorer.md",
-                    "integration/opencode/agents/creator.md",
-                    "integration/opencode/agents/reviewer.md",
-                    "integration/opencode/agents/editor.md",
-                    "integration/opencode/agents/executor.md",
-                    "integration/opencode/commands/bass/diagnose.md",
-                    "integration/opencode/plugins/bass-diagnose.ts",
+                    "AGENTS.md", "projects", "rules", "rules/orchestration.md", "rules/access-control.md", "rules/provenance.md",
+                    "integration/opencode/agents/bass.md", "integration/opencode/agents/reader.md", "integration/opencode/agents/explorer.md", "integration/opencode/agents/creator.md", "integration/opencode/agents/reviewer.md", "integration/opencode/agents/editor.md", "integration/opencode/agents/executor.md",
+                    "integration/opencode/commands/bass/diagnose.md", "integration/opencode/commands/bass/init.md", "integration/opencode/commands/bass/status.md", "integration/opencode/commands/bass/brainstorm.md", "integration/opencode/commands/bass/challenge.md",
+                    "integration/opencode/plugins/bass-diagnose.ts", "integration/opencode/plugins/bass-init-project.ts", "integration/opencode/plugins/bass-project-status.ts", "integration/opencode/plugins/bass-route-workflow.ts",
                 ];
                 const missing = required.filter((entry) => !existsSync(join(bassRoot, entry)));
-                const distribution = missing.length
-                    ? { status: "blocked", observed: `Missing required BASS path(s): ${missing.join(", ")}.`, next: "Copy the complete BASS directory into the target project root." }
-                    : { status: "ready", observed: "Required local BASS distribution paths and portable OpenCode bundle artifacts are present.", next: "Keep the BASS distribution and portable integration bundle intact when creating projects." };
+                const distribution = missing.length ? { status: "blocked", observed: `Missing required BASS path(s): ${missing.join(", ")}.`, next: "Copy the complete BASS directory into the target project root." } : { status: "ready", observed: "Required local BASS distribution paths, P0 workflows, and portable OpenCode bundle artifacts are present.", next: "Keep the BASS distribution and portable integration bundle intact when creating projects." };
                 let project;
                 const projectsRoot = join(bassRoot, "projects");
-                if (!isDirectory(projectsRoot)) {
-                    project = { status: "blocked", observed: "BASS/projects is missing or not a directory.", next: "Restore the BASS projects directory." };
-                }
+                if (!isDirectory(projectsRoot)) project = { status: "blocked", observed: "BASS/projects is missing or not a directory.", next: "Restore the BASS projects directory." };
                 else {
                     const names = readdirSync(projectsRoot).filter((name) => isDirectory(join(projectsRoot, name)));
                     const selected = projectName || (names.length === 1 ? names[0] : undefined);
-                    if (!selected) {
-                        project = { status: "blocked", observed: names.length ? "Multiple project directories require explicit selection." : "No project directory is available for selection.", next: "Run /bass diagnose <project-name> with one direct child project name." };
-                    }
-                    else if (!names.includes(selected)) {
-                        project = { status: "blocked", observed: `Project '${selected}' does not exist as a direct child of BASS/projects/.`, next: "Provide an existing direct child project name." };
-                    }
+                    if (!selected) project = { status: "blocked", observed: names.length ? "Multiple project directories require explicit selection." : "No project directory is available for selection.", next: "Run /bass diagnose <project-name> with one direct child project name." };
+                    else if (!names.includes(selected)) project = { status: "blocked", observed: `Project '${selected}' does not exist as a direct child of BASS/projects/.`, next: "Provide an existing direct child project name." };
                     else {
                         const registry = join(projectsRoot, selected, "project-context", "context-registry.md");
-                        if (!existsSync(registry)) {
-                            project = { status: "blocked", observed: `Project '${selected}' is missing project-context/context-registry.md.`, next: "Restore the project context registry." };
-                        }
+                        if (!existsSync(registry)) project = { status: "blocked", observed: `Project '${selected}' is missing project-context/context-registry.md.`, next: "Restore the project context registry." };
                         else {
-                            const text = readFileSync(registry, "utf8");
-                            const functionalUrl = requiredWikiUrl(text, "Functional ADO Wiki");
-                            const technicalUrl = requiredWikiUrl(text, "Technical ADO Wiki");
+                            const text = readFileSync(registry, "utf8"), functionalUrl = requiredWikiUrl(text, "Functional ADO Wiki"), technicalUrl = requiredWikiUrl(text, "Technical ADO Wiki");
                             const unresolved = !functionalUrl || !technicalUrl || [functionalUrl, technicalUrl].some((url) => !isAzureDevOpsWikiUrl(url) || /example|placeholder|fictional|</i.test(url));
-                            project = unresolved
-                                ? { status: "warning", observed: `Project '${selected}' must have exactly one non-placeholder Azure DevOps Wiki URL in each required Functional and Technical ADO Wiki section.`, next: "Replace both required section URL values with official non-placeholder Azure DevOps Wiki URLs." }
-                                : { status: "ready", observed: `Project '${selected}' has a local context registry with two non-placeholder Azure DevOps Wiki URL values.`, next: "Use approved workflow scope before reading ADO content." };
+                            project = unresolved ? { status: "warning", observed: `Project '${selected}' must have exactly one non-placeholder Azure DevOps Wiki URL in each required Functional and Technical ADO Wiki section.`, next: "Replace both required section URL values with official non-placeholder Azure DevOps Wiki URLs." } : { status: "ready", observed: `Project '${selected}' has a local context registry with two non-placeholder Azure DevOps Wiki URL values.`, next: "Use approved workflow scope before reading ADO content." };
                         }
                     }
                 }
                 const mcp = { status: "warning", observed: "Live MCP availability is checked by later workflows and host setup, not this deterministic local tool.", next: "Configure and authorize azure-devops in the target host before ADO-backed work." };
-                const policyFiles = ["AGENTS.md", "rules/access-control.md", "rules/orchestration.md", "rules/provenance.md"];
-                const missingPolicy = policyFiles.filter((entry) => !existsSync(join(bassRoot, entry)));
-                const policy = missingPolicy.length
-                    ? { status: "blocked", observed: `Missing required policy source(s): ${missingPolicy.join(", ")}.`, next: "Restore the missing BASS policy files before dependent work." }
-                    : { status: "ready", observed: "Local BASS policy sources are present; BASS writes only BASS-owned paths and Executor alone performs confirmed Work Item writes.", next: "Apply the policy sources to approved workflows." };
+                const policyFiles = ["AGENTS.md", "rules/access-control.md", "rules/orchestration.md", "rules/provenance.md"], missingPolicy = policyFiles.filter((entry) => !existsSync(join(bassRoot, entry)));
+                const policy = missingPolicy.length ? { status: "blocked", observed: `Missing required policy source(s): ${missingPolicy.join(", ")}.`, next: "Restore the missing BASS policy files before dependent work." } : { status: "ready", observed: "Local BASS policy sources are present; BASS writes only BASS-owned paths and Executor alone performs confirmed Work Item writes.", next: "Apply the policy sources to approved workflows." };
                 return report([distribution, project, mcp, policy]);
             },
         }),
