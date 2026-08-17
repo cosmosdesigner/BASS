@@ -236,6 +236,9 @@ prohibited.
 
 ## BASS Command Routing
 
+For copyable end-to-end scenarios, approval gates, conditional live ADO operations,
+and recovery behavior, see the [Workflow Examples](docs/workflow-examples.md).
+
 BASS is the only user-facing orchestrator. It selects and coordinates Reader,
 Explorer, Creator, Reviewer, Editor, and Executor; specialists receive bounded inputs
 from BASS and return only to BASS.
