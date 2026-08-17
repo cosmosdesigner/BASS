@@ -11,6 +11,7 @@ const reportPath = join(bassRoot, "reports", "phase-1-source-readiness.md");
 const expected = JSON.parse(readFileSync(expectedPath, "utf8"));
 
 const harnesses = [
+  ["P0 project initialization and routing", "BASS/integration/opencode/plugins/bass-p0.behavior-test.mjs"],
   ["D5 context brief", "BASS/integration/opencode/plugins/bass-context-brief.behavior-test.mjs"],
   ["D5 read capability validation", "BASS/integration/opencode/plugins/bass-validate-ado-read-capabilities.behavior-test.mjs"],
   ["D5 reader boundary", "BASS/integration/opencode/plugins/bass-reader-contract.behavior-test.mjs"],

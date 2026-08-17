@@ -37,7 +37,7 @@ function starterLog(kind, heading, columns, date) {
   const id = kind === "evidence" ? "REG-EVD-001" : kind === "decision" ? "REG-DEC-001" : "ACT-001";
   const title = kind === "evidence" ? "Project evidence register" : kind === "decision" ? "Project decision log" : "Project action log";
   const separator = columns.map(() => "---");
-  return `---\nid: ${id}\ntitle: ${title}\nversion: v1.0\ncreated_date: ${date}\nupdated_date: ${date}\n---\n\n# ${heading}\n\n| ${columns.join(" | ")} |\n| ${separator.join(" | ")} |\n`;
+  return `---\nid: ${id}\ntitle: ${title}\nversion: v1.0\ncreated_date: ${date}\nupdated_date: ${date}\nderived_from: null\nsupersedes: null\nprovenance:\n  classification: Fact\n  sources: []\n  actor: BASS\n  date: ${date}\n  confidence: high\n  source_version: v1.0\n  related_items: []\n---\n\n# ${heading}\n\nThis empty register is a local initialization Fact. It contains no source evidence until records are added through an approved workflow.\n\n| ${columns.join(" | ")} |\n| ${separator.join(" | ")} |\n\n## Changelog\n\n| Date | Version | Change | Reason | Related records |\n| --- | --- | --- | --- | --- |\n| ${date} | v1.0 | Initialized empty ${heading.toLowerCase()}. | Explicit BASS project initialization. | None |\n`;
 }
 function starterContext(title, heading, date, sections) {
   return `---\ntitle: "${title}"\nversion: v1.0\ncreated_date: ${date}\nupdated_date: ${date}\n---\n\n# ${heading}\n\n${sections.map((section) => `## ${section}\n\n`).join("")}## Changelog\n\n| Date | Version | Change | Reason | Related records |\n| --- | --- | --- | --- | --- |\n| ${date} | v1.0 | Initialized empty context file. | Explicit BASS project initialization. | None |\n`;

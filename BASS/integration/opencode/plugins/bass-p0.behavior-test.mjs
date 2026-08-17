@@ -38,6 +38,9 @@ test("P0 init creates a clean project instead of cloning demo evidence", () => {
     assert.ok(fs.existsSync(path.join(directory, "BASS/projects/account-recovery/features")))
     assert.ok(fs.existsSync(path.join(directory, "BASS/projects/account-recovery/ideas")))
     assert.ok(fs.existsSync(path.join(directory, "BASS/projects/account-recovery/project-context/context-registry.md")))
+    const evidenceRegister = fs.readFileSync(path.join(directory, "BASS/projects/account-recovery/evidence-register.md"), "utf8")
+    assert.match(evidenceRegister, /provenance:\n  classification: Fact\n  sources: \[\]/)
+    assert.match(evidenceRegister, /## Changelog/)
     assert.doesNotMatch(fs.readFileSync(path.join(directory, "BASS/projects/account-recovery/project-context/context-registry.md"), "utf8"), /example-org|demo-customer-onboarding/)
     assert.equal(result.gaps.length, 2)
   } finally { cleanup(directory) }

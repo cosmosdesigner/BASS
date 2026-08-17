@@ -24,6 +24,7 @@
     "BASS/docs/target-host-validation.md",
     "BASS/docs/phase-2-backlog.md",
     "BASS/docs/release-checklist.md"
+    ,"BASS/docs/workflow-examples.md"
   ],
   "targetHostChecks": [
     ["reader-agent", "pending", "No isolated target host is configured.", "Recorded least-privilege Wiki and Work Item read evidence."],

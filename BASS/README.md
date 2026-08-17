@@ -239,6 +239,11 @@ prohibited.
 For copyable end-to-end scenarios, approval gates, conditional live ADO operations,
 and recovery behavior, see the [Workflow Examples](docs/workflow-examples.md).
 
+P0 project initialization, status, brainstorming, and challenge behavior is included
+in this distribution. See the [P0 Release Notes](../README-P0.md) and run
+`node BASS/integration/opencode/plugins/bass-p0.behavior-test.mjs` as part of
+portable source validation.
+
 BASS is the only user-facing orchestrator. It selects and coordinates Reader,
 Explorer, Creator, Reviewer, Editor, and Executor; specialists receive bounded inputs
 from BASS and return only to BASS.

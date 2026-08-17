@@ -1,6 +1,6 @@
-# BASS P0 Implementation Overlay
+# BASS P0 Release Notes
 
-This overlay contains the P0 implementation for the current BASS repository.
+P0 is included in this repository. No overlay copy step is required.
 
 ## Implemented
 
@@ -39,17 +39,9 @@ This overlay contains the P0 implementation for the current BASS repository.
   - `bass_diagnose` now includes P0 commands/plugins in distribution validation.
   - Orchestration rule and command catalogue updated.
 
-## Apply
+## Installation
 
-From the root of a checked-out `cosmosdesigner/BASS` repository, copy the overlay contents over the repository contents, preserving paths.
-
-Example on macOS/Linux:
-
-```bash
-cp -R /path/to/BASS-P0-overlay/BASS/* ./BASS/
-```
-
-Then reinstall/copy `BASS/integration/opencode/` into the target host `.opencode/` according to the existing BASS installation procedure.
+Follow the repository [technical installation guide](BASS/docs/technical-installation.md). Copy the committed portable bundle from `BASS/integration/opencode/` into the target host `.opencode/` as documented there.
 
 ## Validate
 
@@ -57,7 +49,13 @@ Then reinstall/copy `BASS/integration/opencode/` into the target host `.opencode
 node BASS/integration/opencode/plugins/bass-p0.behavior-test.mjs
 ```
 
-Then run the repository's existing source checks and target-host validation procedures.
+Then run:
+
+```bash
+node BASS/quality/run-source-readiness.mjs
+```
+
+Follow the target-host validation runbook before claiming live ADO readiness.
 
 ## Important boundary
 

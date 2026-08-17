@@ -4,6 +4,7 @@
 
 | Scope | Portable source evidence | Target-host validation requirement | Owner | Readiness tier |
 | --- | --- | --- | --- | --- |
+| P0 project initialization and status | P0 initialization, status, routing, brainstorm, and challenge behavior suite | Confirm initialization and local health behavior in an isolated target host | BASS | source_ready |
 | Reader agent | D5 context, capability, and Reader boundary harnesses | Verified Wiki and Work Item read mappings with least-privilege permissions | Reader | source_ready |
 | Explorer agent | D6 discovery and D10 technical-delivery harnesses | Cited isolated-target read outcomes only | Explorer | source_ready |
 | Creator agent | D7 preview and approved-persistence harnesses | Confirm preview remains local until a separately confirmed Executor operation | Creator | source_ready |
