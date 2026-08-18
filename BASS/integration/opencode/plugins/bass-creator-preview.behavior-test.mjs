@@ -36,7 +36,7 @@ try {
   const tsc = localTsc()
   try { execSync(`node "${tsc}" --target ES2022 --module NodeNext --moduleResolution NodeNext --skipLibCheck --noEmitOnError false --outDir "${compiled}" "${fileURLToPath(new URL("bass-creator-preview.ts", pluginRoot))}"`, { stdio: "pipe" }) } catch { /* Target OpenCode supplies plugin and Node declarations; tsc still emits JS. */ }
   const execute = await load(join(runtime, "bass-creator-preview.js")), tsExecute = await load(join(compiled, "bass-creator-preview.js"))
-  const invoke = async (args) => { const js = await execute(args, { directory: host }); const ts = await tsExecute(args, { directory: host }); assert.deepEqual(normalizePreview(ts), normalizePreview(js), `TS and JS output differ for ${JSON.stringify(args)}`); return js }
+  const invoke = async (args) => { const js = await execute(args, { directory: host }); const ts = await tsExecute(args, { directory: host }); assert.equal(typeof js, "string", `JS OpenCode adapter must serialize ${JSON.stringify(args)}`); assert.equal(typeof ts, "string", `TS OpenCode adapter must serialize ${JSON.stringify(args)}`); const jsResult = JSON.parse(js), tsResult = JSON.parse(ts); assert.deepEqual(normalizePreview(tsResult), normalizePreview(jsResult), `TS and JS output differ for ${JSON.stringify(args)}`); return jsResult }
 
   const feature = await invoke({ projectName: "project", artifactType: "feature", title: "Guided registration", evidence: [evidence()] })
   assert.equal(feature.writeStatus, "ready_for_approval")
