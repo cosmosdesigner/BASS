@@ -2,7 +2,7 @@
 
 ## Outcome
 
-- Source readiness: `source_ready`
+- Source readiness: `blocked`
 - Target-host readiness: `pending`
 - Classification: Fact
 - Confidence: High for local checks; no target-host evidence assessed.
@@ -18,18 +18,18 @@ Executed harness IDs: `p0-project-initialization-and-routing`, `d5-context-brief
 | Check | Source | Result |
 | --- | --- | --- |
 | P0 project initialization and routing | `BASS/integration/opencode/plugins/bass-p0.behavior-test.mjs` | pass |
-| D5 context brief | `BASS/integration/opencode/plugins/bass-context-brief.behavior-test.mjs` | pass |
+| D5 context brief | `BASS/integration/opencode/plugins/bass-context-brief.behavior-test.mjs` | fail |
 | D5 read capability validation | `BASS/integration/opencode/plugins/bass-validate-ado-read-capabilities.behavior-test.mjs` | pass |
 | D5 reader boundary | `BASS/integration/opencode/plugins/bass-reader-contract.behavior-test.mjs` | pass |
-| D6 discovery | `BASS/integration/opencode/plugins/bass-discovery-report.behavior-test.mjs` | pass |
-| D7 creator preview | `BASS/integration/opencode/plugins/bass-creator-preview.behavior-test.mjs` | pass |
+| D6 discovery | `BASS/integration/opencode/plugins/bass-discovery-report.behavior-test.mjs` | fail |
+| D7 creator preview | `BASS/integration/opencode/plugins/bass-creator-preview.behavior-test.mjs` | fail |
 | D7 approved persistence | `BASS/integration/opencode/plugins/bass-persist-approved-artifact.behavior-test.mjs` | pass |
 | D8 review | `BASS/integration/opencode/plugins/bass-review-artifact.behavior-test.mjs` | pass |
 | D8 improvement | `BASS/integration/opencode/plugins/bass-improve-artifact.behavior-test.mjs` | pass |
 | D8 approved improvement persistence | `BASS/integration/opencode/plugins/bass-persist-approved-improvement.behavior-test.mjs` | pass |
-| D8 fixture snapshots | `BASS/integration/opencode/plugins/bass-d8-fixtures.behavior-test.mjs` | pass |
-| D8 regressions | `BASS/integration/opencode/plugins/bass-d8-p1-p2.behavior-test.mjs` | pass |
-| D9 executor | `BASS/integration/opencode/plugins/bass-ado-executor.behavior-test.mjs` | pass |
+| D8 fixture snapshots | `BASS/integration/opencode/plugins/bass-d8-fixtures.behavior-test.mjs` | fail |
+| D8 regressions | `BASS/integration/opencode/plugins/bass-d8-p1-p2.behavior-test.mjs` | fail |
+| D9 executor | `BASS/integration/opencode/plugins/bass-ado-executor.behavior-test.mjs` | fail |
 | D9 core findings | `BASS/integration/opencode/plugins/bass-ado-executor-core-findings.red-test.mjs` | pass |
 | D9 recovery | `BASS/integration/opencode/plugins/bass-ado-executor-recovery.red-test.mjs` | pass |
 | D9 journal | `BASS/integration/opencode/plugins/bass-ado-executor-journal.red-test.mjs` | pass |
@@ -37,10 +37,10 @@ Executed harness IDs: `p0-project-initialization-and-routing`, `d5-context-brief
 | D9 journal durability | `BASS/integration/opencode/plugins/bass-ado-executor-journal-durability.red-test.mjs` | pass |
 | D9 journal cleanup | `BASS/integration/opencode/plugins/bass-ado-executor-journal-cleanup.red-test.mjs` | pass |
 | D9 read capability validation | `BASS/integration/opencode/plugins/bass-validate-ado-read-capabilities.behavior-test.mjs` | pass |
-| D9 discovery capability validation | `BASS/integration/opencode/plugins/bass-validate-ado-discovery-capabilities.behavior-test.mjs` | pass |
+| D9 discovery capability validation | `BASS/integration/opencode/plugins/bass-validate-ado-discovery-capabilities.behavior-test.mjs` | fail |
 | D9 TypeScript wrapper load | `BASS/test-support/d9/ts-wrapper-load-regression.mjs` | pass |
 | D10 technical delivery | `BASS/integration/opencode/plugins/bass-technical-delivery.behavior-test.mjs` | pass |
-| D10 fixture harness | `BASS/test-support/d10/technical-delivery-fixture-harness.mjs` | pass |
+| D10 fixture harness | `BASS/test-support/d10/technical-delivery-fixture-harness.mjs` | fail |
 | D11 orchestration | `BASS/integration/opencode/plugins/bass-orchestration.behavior-test.mjs` | pass |
 | D11 fixture harness | `BASS/test-support/d11/orchestration-fixture-harness.mjs` | pass |
 | D11 TypeScript plugin load | `BASS/test-support/d11/orchestration-ts-plugin-load.mjs` | pass |
@@ -129,7 +129,14 @@ Every target-host matrix check is declarative and remains pending until recorded
 
 ## Evidence Gaps
 
-- No local harness failures.
+- Failed local harness: `BASS/integration/opencode/plugins/bass-context-brief.behavior-test.mjs`.
+- Failed local harness: `BASS/integration/opencode/plugins/bass-discovery-report.behavior-test.mjs`.
+- Failed local harness: `BASS/integration/opencode/plugins/bass-creator-preview.behavior-test.mjs`.
+- Failed local harness: `BASS/integration/opencode/plugins/bass-d8-fixtures.behavior-test.mjs`.
+- Failed local harness: `BASS/integration/opencode/plugins/bass-d8-p1-p2.behavior-test.mjs`.
+- Failed local harness: `BASS/integration/opencode/plugins/bass-ado-executor.behavior-test.mjs`.
+- Failed local harness: `BASS/integration/opencode/plugins/bass-validate-ado-discovery-capabilities.behavior-test.mjs`.
+- Failed local harness: `BASS/test-support/d10/technical-delivery-fixture-harness.mjs`.
 - Every configured D5-D11 harness ID executed.
 - All required D1-D4 artifacts exist.
 - All configured prior acceptance reports exist.

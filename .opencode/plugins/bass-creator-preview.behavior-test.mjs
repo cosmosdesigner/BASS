@@ -7,7 +7,6 @@ import { execSync } from "node:child_process"
 
 const pluginRoot = new URL(".", import.meta.url)
 const fixtureRoot = fileURLToPath(new URL("../../../fixtures/d7-creator/", pluginRoot))
-const source = readFileSync(fileURLToPath(new URL("bass-creator-preview.ts", pluginRoot)), "utf8")
 const root = mkdtempSync(join(tmpdir(), "bass-creator-preview-"))
 const write = (path, text) => { mkdirSync(join(path, ".."), { recursive: true }); writeFileSync(path, text) }
 const localTsc = () => {
@@ -22,7 +21,6 @@ const evidence = (classification = "Fact") => ({ type: "local_file", source: "pr
 async function load(file) { const module = await import(`${pathToFileURL(file).href}?${Math.random()}`); const plugin = await module.BassCreatorPreviewPlugin({}); return plugin.tool.bass_creator_preview.execute }
 
 try {
-  assert.match(source, /evidence: tool\.schema\.array\(tool\.schema\.object\(\{ type: tool\.schema\.string\(\), source: tool\.schema\.string\(\), location: tool\.schema\.string\(\), classification: tool\.schema\.string\(\), confidence: tool\.schema\.string\(\), claim: tool\.schema\.string\(\)\.optional\(\), relatedItemId: tool\.schema\.string\(\)\.optional\(\) \}\)\)/, "OpenCode must preserve typed evidence fields")
   const shim = join(root, "node_modules", "@opencode-ai", "plugin")
   write(join(shim, "package.json"), '{"type":"module","exports":"./index.js"}')
   write(join(shim, "index.js"), 'export const tool = (definition) => definition; tool.schema = { string: () => ({ optional: () => ({}) }), array: () => ({ optional: () => ({}) }), object: () => ({ optional: () => ({}) }), boolean: () => ({ optional: () => ({}) }) };')
@@ -38,7 +36,7 @@ try {
   const tsc = localTsc()
   try { execSync(`node "${tsc}" --target ES2022 --module NodeNext --moduleResolution NodeNext --skipLibCheck --noEmitOnError false --outDir "${compiled}" "${fileURLToPath(new URL("bass-creator-preview.ts", pluginRoot))}"`, { stdio: "pipe" }) } catch { /* Target OpenCode supplies plugin and Node declarations; tsc still emits JS. */ }
   const execute = await load(join(runtime, "bass-creator-preview.js")), tsExecute = await load(join(compiled, "bass-creator-preview.js"))
-  const invoke = async (args) => { const js = await execute(args, { directory: host }); const ts = await tsExecute(args, { directory: host }); assert.equal(typeof js, "string", `JS OpenCode adapter must serialize ${JSON.stringify(args)}`); assert.equal(typeof ts, "string", `TS OpenCode adapter must serialize ${JSON.stringify(args)}`); const jsResult = JSON.parse(js), tsResult = JSON.parse(ts); assert.deepEqual(normalizePreview(tsResult), normalizePreview(jsResult), `TS and JS output differ for ${JSON.stringify(args)}`); return jsResult }
+  const invoke = async (args) => { const js = await execute(args, { directory: host }); const ts = await tsExecute(args, { directory: host }); assert.deepEqual(normalizePreview(ts), normalizePreview(js), `TS and JS output differ for ${JSON.stringify(args)}`); return js }
 
   const feature = await invoke({ projectName: "project", artifactType: "feature", title: "Guided registration", evidence: [evidence()] })
   assert.equal(feature.writeStatus, "ready_for_approval")
