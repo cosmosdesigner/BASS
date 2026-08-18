@@ -19,5 +19,5 @@ function recommendNext(input) {
   return { status: "ready", recommendation, rationale, nonExecuting: true, source: { workflow, status: String(envelope.status || "unknown") } };
 }
 
-const BassRecommendNextPlugin = async () => ({ tool: { bass_recommend_next: tool({ description: "Recommend one safe non-executing BASS next action.", args: { envelope: tool.schema.object(), request: tool.schema.string().optional() }, async execute(args) { return recommendNext(args); } }) } });
+const BassRecommendNextPlugin = async () => ({ tool: { bass_recommend_next: tool({ description: "Recommend one safe non-executing BASS next action.", args: { envelope: tool.schema.object(), request: tool.schema.string().optional() }, async execute(args) { return JSON.stringify(recommendNext(args)); } }) } });
 module.exports = { recommendNext, BassRecommendNextPlugin };

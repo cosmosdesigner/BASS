@@ -56,7 +56,7 @@ export const BassDiagnosePlugin: Plugin = async () => ({
         const mcp: Section = { status: "warning", observed: "Live MCP availability is checked by later workflows and host setup, not this deterministic local tool.", next: "Configure and authorize azure-devops in the target host before ADO-backed work." }
         const policyFiles = ["AGENTS.md", "rules/access-control.md", "rules/orchestration.md", "rules/provenance.md"], missingPolicy = policyFiles.filter((entry) => !existsSync(join(bassRoot, entry)))
         const policy: Section = missingPolicy.length ? { status: "blocked", observed: `Missing required policy source(s): ${missingPolicy.join(", ")}.`, next: "Restore the missing BASS policy files before dependent work." } : { status: "ready", observed: "Local BASS policy sources are present; BASS writes only BASS-owned paths and Executor alone performs confirmed Work Item writes.", next: "Apply the policy sources to approved workflows." }
-        return report([distribution, project, mcp, policy])
+        return JSON.stringify(report([distribution, project, mcp, policy]))
       },
     }),
   },

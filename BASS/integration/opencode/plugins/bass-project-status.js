@@ -96,5 +96,5 @@ function projectStatus(input) {
     nextAction
   };
 }
-const BassProjectStatusPlugin = async () => ({ tool: { bass_project_status: tool({ description: "Return deterministic local BASS project health without MCP or Azure DevOps calls.", args: { projectName: tool.schema.string().optional() }, async execute(args, context) { return projectStatus({ ...args, directory: context.directory }); } }) } });
+const BassProjectStatusPlugin = async () => ({ tool: { bass_project_status: tool({ description: "Return deterministic local BASS project health without MCP or Azure DevOps calls.", args: { projectName: tool.schema.string().optional() }, async execute(args, context) { return JSON.stringify(projectStatus({ ...args, directory: context.directory })); } }) } });
 module.exports = { projectStatus, BassProjectStatusPlugin };

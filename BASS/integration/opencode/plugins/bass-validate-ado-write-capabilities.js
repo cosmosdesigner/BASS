@@ -20,5 +20,5 @@ function validateAdoWriteCapabilities(input = {}) {
   const executorPermissions = ["ado_*: deny", ...Object.values(available).map((entry) => `${entry.toolName}: allow`).sort()];
   return { status: errors.length ? "blocked" : "ready", errors, capabilities: available, fields, executorPermissions, availableOperations: Object.values(available) };
 }
-const BassValidateAdoWriteCapabilitiesPlugin = async () => ({ tool: { bass_validate_ado_write_capabilities: tool({ description: "Validate exact safe target-host ADO Work Item capability and field mappings.", args: { capabilities: tool.schema.object(), fields: tool.schema.object() }, async execute(args) { return validateAdoWriteCapabilities(args); } }) } });
+const BassValidateAdoWriteCapabilitiesPlugin = async () => ({ tool: { bass_validate_ado_write_capabilities: tool({ description: "Validate exact safe target-host ADO Work Item capability and field mappings.", args: { capabilities: tool.schema.object(), fields: tool.schema.object() }, async execute(args) { return JSON.stringify(validateAdoWriteCapabilities(args)); } }) } });
 module.exports = { validateAdoWriteCapabilities, BassValidateAdoWriteCapabilitiesPlugin, categories, workItemTypes };
