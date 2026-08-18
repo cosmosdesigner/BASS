@@ -29,3 +29,4 @@ This registry contains configured source references. A configured URL is not evi
 | Date | Version | Change | Reason | Related records |
 | --- | --- | --- | --- | --- |
 | 2026-08-17 | v1.0 | Initialized project context registry. | Explicit BASS project initialization. | None |
+| 2026-08-18 | v1.1 | Resolved the Technical URL to the canonical AgentLab Overview page. | Successful approved read-only ADO Wiki retrieval confirmed the canonical page. | EVD-001 |
