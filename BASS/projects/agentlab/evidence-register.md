@@ -18,7 +18,7 @@ provenance:
 
 # Evidence Register
 
-This empty register is a local initialization Fact. It contains no source evidence until records are added through an approved workflow.
+This register is a local initialization Fact. It contains EVD-001, an unresolved technical retrieval Question; do not derive technical claims until it is resolved through an approved workflow.
 
 | ID | Classification | Title | Sources | Confidence | Location | Related items | Record |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -28,4 +28,4 @@ This empty register is a local initialization Fact. It contains no source eviden
 
 | Date | Version | Change | Reason | Related records |
 | --- | --- | --- | --- | --- |
-| 2026-08-17 | v1.0 | Initialized empty evidence register. | Explicit BASS project initialization. | None |
+| 2026-08-17 | v1.0 | Initialized evidence register with EVD-001, an unresolved technical retrieval Question. | Explicit BASS project initialization; technical evidence remains unavailable pending retrieval resolution. | EVD-001 |
