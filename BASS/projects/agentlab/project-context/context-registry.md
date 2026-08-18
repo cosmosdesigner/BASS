@@ -1,11 +1,11 @@
 ---
 id: CTX-REG-001
 title: "agentlab Context Registry"
-version: v1.0
+version: v1.1
 created_date: 2026-08-17
-updated_date: 2026-08-17
-derived_from: null
-supersedes: null
+updated_date: 2026-08-18
+derived_from: CTX-REG-001@v1.0
+supersedes: CTX-REG-001@v1.0
 ---
 
 # Context Registry

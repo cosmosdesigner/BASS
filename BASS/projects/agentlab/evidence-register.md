@@ -1,18 +1,22 @@
 ---
 id: REG-EVD-001
 title: Project evidence register
-version: v1.0
+version: v1.1
 created_date: 2026-08-17
-updated_date: 2026-08-17
-derived_from: null
-supersedes: null
+updated_date: 2026-08-18
+derived_from: REG-EVD-001@v1.0
+supersedes: REG-EVD-001@v1.0
 provenance:
   classification: Fact
-  sources: []
+  sources:
+    - type: ado_wiki
+      reference: https://dev.azure.com/ptbcp/IT.DIT/_wiki/wikis/5f28c731-c27d-4779-9dd8-1bc57804504c?pagePath=%2FAgentLab%20Overview
+      location: "AgentLab Overview page"
+      retrieved_date: 2026-08-18
   actor: BASS
-  date: 2026-08-17
+  date: 2026-08-18
   confidence: high
-  source_version: v1.0
+  source_version: v1.1
   related_items: []
 ---
 
