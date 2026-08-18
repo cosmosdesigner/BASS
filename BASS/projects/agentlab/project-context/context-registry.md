@@ -20,9 +20,9 @@ This registry contains configured source references. A configured URL is not evi
 
 ## Technical ADO Wiki
 
-- URL: `https://dev.azure.com/ptbcp/IT.DIT/_wiki/wikis/BCP.Generative%20AI.Wiki/83821/AgentLab-Overview`
+- URL: `https://dev.azure.com/ptbcp/IT.DIT/_wiki/wikis/5f28c731-c27d-4779-9dd8-1bc57804504c?pagePath=%2FAgentLab%20Overview`
 - Classification: Fact
-- Read status: configured; direct page lookup unresolved
+- Read status: verified by successful approved read-only ADO Wiki retrieval
 
 ## Changelog
 

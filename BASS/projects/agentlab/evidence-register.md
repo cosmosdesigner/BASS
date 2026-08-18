@@ -18,14 +18,15 @@ provenance:
 
 # Evidence Register
 
-This register is a local initialization Fact. It contains EVD-001, an unresolved technical retrieval Question; do not derive technical claims until it is resolved through an approved workflow.
+This register is a local initialization Fact. It contains EVD-001, a Fact confirming retrieval of the canonical AgentLab technical page; no technical requirements have been derived from its content.
 
 | ID | Classification | Title | Sources | Confidence | Location | Related items | Record |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| EVD-001 | Question | Resolve direct API retrieval of AgentLab Overview technical page. | `https://dev.azure.com/ptbcp/IT.DIT/_wiki/wikis/BCP.Generative%20AI.Wiki/83821/AgentLab-Overview`; Azure DevOps Wiki API returned `Page with id 83821 not found`. | high | `project-context/context-registry.md` | CTX-REG-001 | Technical page remains configured but unread; do not derive technical claims. |
+| EVD-001 | Fact | Canonical AgentLab Overview technical page retrieved. | Canonical: `https://dev.azure.com/ptbcp/IT.DIT/_wiki/wikis/5f28c731-c27d-4779-9dd8-1bc57804504c?pagePath=%2FAgentLab%20Overview` successfully retrieved; superseded lookup: `https://dev.azure.com/ptbcp/IT.DIT/_wiki/wikis/BCP.Generative%20AI.Wiki/83821/AgentLab-Overview` returned `Page with id 83821 not found`. | high | `project-context/context-registry.md` | CTX-REG-001 | Successful read establishes reachability only; no technical requirements derived. |
 
 ## Changelog
 
 | Date | Version | Change | Reason | Related records |
 | --- | --- | --- | --- | --- |
-| 2026-08-17 | v1.0 | Initialized evidence register with EVD-001, an unresolved technical retrieval Question. | Explicit BASS project initialization; technical evidence remains unavailable pending retrieval resolution. | EVD-001 |
+| 2026-08-18 | v1.1 | Resolved EVD-001 with the canonical AgentLab Overview page. | A successful approved read-only ADO Wiki retrieval identified the canonical page path. | EVD-001 |
+| 2026-08-17 | v1.0 | Initialized evidence register with EVD-001, a pending retrieval Question. | Explicit BASS project initialization; technical evidence remained unavailable pending retrieval resolution. | EVD-001 |
