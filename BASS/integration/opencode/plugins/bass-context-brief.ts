@@ -172,7 +172,7 @@ export const BassContextBriefPlugin: Plugin = async () => ({
       async execute(args, context) {
         const projectName = args.projectName?.trim()
         const target = args.target?.trim()
-        if (!target) return brief("invalid target", "blocked", "No filesystem sources loaded.", { Gaps: ["- Target is required. Next action: provide a non-empty typed ID or exact title."] })
+        if (!target) return JSON.stringify(brief("invalid target", "blocked", "No filesystem sources loaded.", { Gaps: ["- Target is required. Next action: provide a non-empty typed ID or exact title."] }))
         if (projectName && invalidProjectName(projectName)) return brief(target, "blocked", "No filesystem sources loaded because projectName failed preflight.", { Gaps: ["- Selected project is invalid. Next action: provide one direct child name under BASS/projects/."] })
 
         const projectsRoot = join(context.directory, "BASS", "projects")
@@ -222,7 +222,7 @@ export const BassContextBriefPlugin: Plugin = async () => ({
         for (const [name, reference] of adoSources) entries.Gaps!.push(`- Expected source: ${name}${reference ? ` (${reference})` : " (no local reference recorded)"}. Reason: not loaded by this local-only tool. Impact: ${name} evidence is absent from this brief. Next action: use an installation-verified read-only ADO capability.`)
         const hasGaps = entries.Gaps!.length > 0
         const status: Status = hasGaps || entries.Conflicts!.length ? "warning" : "ready"
-        return brief(resolved.id || resolved.title, status, `Loaded ${loaded.length} local source(s); ${entries.Gaps!.length} unavailable ADO source(s).`, entries)
+        return JSON.stringify(brief(resolved.id || resolved.title, status, `Loaded ${loaded.length} local source(s); ${entries.Gaps!.length} unavailable ADO source(s).`, entries))
       },
     }),
   },

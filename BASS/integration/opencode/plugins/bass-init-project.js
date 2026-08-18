@@ -102,5 +102,5 @@ function initProject(input) {
     nextAction: missingSources.length ? `Configure ${missingSources.join(" and ")} in project-context/context-registry.md, then run /bass status ${projectName}.` : `Run /bass status ${projectName}.`
   };
 }
-const BassInitProjectPlugin = async () => ({ tool: { bass_init_project: tool({ description: "Initialize one contained BASS project scaffold without any Azure DevOps operation.", args: { projectName: tool.schema.string(), projectTitle: tool.schema.string().optional(), functionalWikiUrl: tool.schema.string().optional(), technicalWikiUrl: tool.schema.string().optional() }, async execute(args, context) { return initProject(normalizeInitProjectInput(args, context.directory)); } }) } });
+const BassInitProjectPlugin = async () => ({ tool: { bass_init_project: tool({ description: "Initialize one contained BASS project scaffold without any Azure DevOps operation.", args: { projectName: tool.schema.string(), projectTitle: tool.schema.string().optional(), functionalWikiUrl: tool.schema.string().optional(), technicalWikiUrl: tool.schema.string().optional() }, async execute(args, context) { return JSON.stringify(initProject(normalizeInitProjectInput(args, context.directory))); } }) } });
 module.exports = { initProject, normalizeInitProjectInput, BassInitProjectPlugin };

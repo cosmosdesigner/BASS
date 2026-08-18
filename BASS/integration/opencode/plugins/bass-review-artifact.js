@@ -73,5 +73,5 @@ function reviewArtifact(input) {
   const status = findings.some((item) => ["Critical", "Major"].includes(item.severity) && item.status !== "waived") ? "blocked" : findings.length ? "pass_with_advisories" : "pass";
   return { artifactPath: resolved.requested, artifactVersion, status, findings, unresolvedQuestions, reviewDecision: status === "blocked" ? "blocked pending resolution or Decision waiver" : "approval eligible", sources: [{ path: resolved.requested, location: "artifact" }] };
 }
-const BassReviewArtifactPlugin = async () => ({ tool: { bass_review_artifact: tool({ description: "Review one canonical local BASS artifact without remote operations.", args: { projectName: tool.schema.string(), artifactPath: tool.schema.string() }, async execute(args, context) { return reviewArtifact({ ...args, directory: context.directory }); } }) } });
+const BassReviewArtifactPlugin = async () => ({ tool: { bass_review_artifact: tool({ description: "Review one canonical local BASS artifact without remote operations.", args: { projectName: tool.schema.string(), artifactPath: tool.schema.string() }, async execute(args, context) { return JSON.stringify(reviewArtifact({ ...args, directory: context.directory })); } }) } });
 module.exports = { reviewArtifact, BassReviewArtifactPlugin };

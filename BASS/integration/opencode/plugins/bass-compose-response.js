@@ -24,5 +24,5 @@ function composeResponse(input) {
   return { status: String(result.status || "ready"), workflow: String(result.workflow), sections, markdown: lines.join("\n\n"), sources: evidence, result: result.result, gaps, conflicts, nextAction: String(result.nextAction || "No action is available."), gates: Array.isArray(result.gates) ? result.gates : [], requiresApproval: result.requiresApproval === true, requiresConfirmation: result.requiresConfirmation === true };
 }
 
-const BassComposeResponsePlugin = async () => ({ tool: { bass_compose_response: tool({ description: "Compose one evidenced BASS response envelope.", args: { workflowResult: tool.schema.object() }, async execute(args) { return composeResponse(args); } }) } });
+const BassComposeResponsePlugin = async () => ({ tool: { bass_compose_response: tool({ description: "Compose one evidenced BASS response envelope.", args: { workflowResult: tool.schema.object() }, async execute(args) { return JSON.stringify(composeResponse(args)); } }) } });
 module.exports = { composeResponse, BassComposeResponsePlugin };
