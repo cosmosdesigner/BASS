@@ -23,7 +23,7 @@ export const BassInitProjectPlugin: Plugin = async () => ({
         functionalWikiUrl: tool.schema.string().optional(),
         technicalWikiUrl: tool.schema.string().optional(),
       },
-      async execute(args: InitProjectInput, context: { directory: string }) { return initProject(normalizeInitProjectInput(args, context.directory)) },
+      async execute(args: InitProjectInput, context: { directory: string }) { return JSON.stringify(initProject(normalizeInitProjectInput(args, context.directory))) },
     }),
   },
 })

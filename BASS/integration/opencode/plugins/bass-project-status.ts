@@ -6,7 +6,7 @@ export const BassProjectStatusPlugin: Plugin = async () => ({
     bass_project_status: tool({
       description: "Return deterministic local BASS project health without MCP or Azure DevOps calls.",
       args: { projectName: tool.schema.string().optional() },
-      async execute(args: any, context: any) { return projectStatus({ ...args, directory: context.directory }) },
+      async execute(args: any, context: any) { return JSON.stringify(projectStatus({ ...args, directory: context.directory })) },
     }),
   },
 })

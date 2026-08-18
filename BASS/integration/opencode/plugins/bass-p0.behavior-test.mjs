@@ -4,15 +4,18 @@ import os from "node:os"
 import path from "node:path"
 import { createHmac } from "node:crypto"
 import { createRequire } from "node:module"
+import { copyFileSync, mkdirSync, writeFileSync } from "node:fs"
+import { spawnSync } from "node:child_process"
+import { pathToFileURL } from "node:url"
 
 const require = createRequire(import.meta.url)
 const { initProject, normalizeInitProjectInput } = require("./bass-init-project.js")
 const { projectStatus } = require("./bass-project-status.js")
 const { routeWorkflow } = require("./bass-route-workflow.js")
 
+const pending = []
 function test(name, run) {
-  try { run(); console.log(`PASS ${name}`) }
-  catch (error) { console.error(`FAIL ${name}\n${error.stack}`); process.exitCode = 1 }
+  pending.push(Promise.resolve().then(run).then(() => console.log(`PASS ${name}`), (error) => { console.error(`FAIL ${name}\n${error.stack}`); process.exitCode = 1 }))
 }
 
 const signingKey = "p0-source-test-key"
@@ -82,6 +85,44 @@ test("P0 status is deterministic local health and never claims live ADO connecti
   } finally { cleanup(directory) }
 })
 
+test("P0 OpenCode adapters serialize init and status envelopes", async () => {
+  const directory = fixture()
+  try {
+    const output = fs.mkdtempSync(path.join(os.tmpdir(), "bass-p0-ts-"))
+    const shimRoot = path.join(output, "node_modules", "@opencode-ai", "plugin")
+    mkdirSync(shimRoot, { recursive: true })
+    writeFileSync(path.join(shimRoot, "index.js"), `module.exports = require(${JSON.stringify(path.join(process.cwd(), "BASS", "test-support", "d9", "opencode-plugin-runtime-stub.cjs"))})`, "utf8")
+    const source = path.join(output, "source")
+    mkdirSync(source, { recursive: true })
+    const files = [["bass-init-project", "init-wrapper"], ["bass-project-status", "status-wrapper"], ["bass-compose-response", "compose-wrapper"]]
+    for (const [runtime, wrapper] of files) {
+      const original = fs.readFileSync(path.join(process.cwd(), "BASS", "integration", "opencode", "plugins", `${runtime}.ts`), "utf8")
+      const runtimePath = path.join(process.cwd(), "BASS", "integration", "opencode", "plugins", `${runtime}.js`).replace(/\\/g, "\\\\")
+      writeFileSync(path.join(source, `${wrapper}.ts`), original.replace(`require("./${runtime}.js")`, `require("${runtimePath}")`), "utf8")
+    }
+    const args = ["--module", "node16", "--target", "es2022", "--moduleResolution", "node16", "--skipLibCheck", "--outDir", output, ...files.map(([, wrapper]) => path.join(source, `${wrapper}.ts`)), path.join(process.cwd(), "BASS", "test-support", "d9", "opencode-plugin-shim.d.ts")]
+    const compile = process.platform === "win32" ? spawnSync(process.env.ComSpec, ["/d", "/s", "/c", `tsc ${args.join(" ")}`], { encoding: "utf8" }) : spawnSync("tsc", args, { encoding: "utf8" })
+    assert.equal(compile.status, 0, compile.stderr || compile.stdout)
+    const initWrapper = await import(pathToFileURL(path.join(output, "init-wrapper.js")).href)
+    const statusWrapper = await import(pathToFileURL(path.join(output, "status-wrapper.js")).href)
+    const composeWrapper = await import(pathToFileURL(path.join(output, "compose-wrapper.js")).href)
+    const initPlugin = await initWrapper.BassInitProjectPlugin()
+    const initialized = await initPlugin.tool.bass_init_project.execute({ projectName: "agentlab" }, { directory })
+    assert.equal(typeof initialized, "string")
+    assert.equal(JSON.parse(initialized).status, "warning")
+
+    const statusPlugin = await statusWrapper.BassProjectStatusPlugin()
+    const status = await statusPlugin.tool.bass_project_status.execute({ projectName: "agentlab" }, { directory })
+    assert.equal(typeof status, "string")
+    assert.equal(JSON.parse(status).projectName, "agentlab")
+
+    const composePlugin = await composeWrapper.BassComposeResponsePlugin()
+    const composed = await composePlugin.tool.bass_compose_response.execute({ workflowResult: JSON.parse(initialized) })
+    assert.equal(typeof composed, "string")
+    assert.match(JSON.parse(composed).markdown, /## Status/)
+  } finally { cleanup(directory) }
+})
+
 test("natural language treats artifact nouns as context rather than accidental Create intent", () => {
   const route = routeWorkflow({ request: "Explain this Feature", context: { target: "F-001", contextStatus: "ready" } })
   assert.equal(route.status, "ready")
@@ -131,4 +172,5 @@ test("P0 source-level happy path reaches every canonical gate without bypassing 
   assert.deepEqual(syncConfirmed.specialistRoute, ["Executor"])
 })
 
+await Promise.all(pending)
 if (process.exitCode) process.exit(process.exitCode)
