@@ -1,5 +1,5 @@
 import { strict as assert } from "node:assert"
-import { cpSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs"
+import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs"
 import { join } from "node:path"
 import { tmpdir } from "node:os"
 import { fileURLToPath, pathToFileURL } from "node:url"
@@ -47,7 +47,7 @@ try {
   cpSync(fileURLToPath(new URL("bass-validate-ado-read-capabilities.js", pluginRoot)), join(runtime, "validator.js"))
   const compiled = join(root, "compiled"); mkdirSync(compiled, { recursive: true })
   try { execSync(`npx tsc --target ES2022 --module NodeNext --moduleResolution NodeNext --skipLibCheck --noEmitOnError false --outDir "${compiled}" "${fileURLToPath(new URL("bass-validate-ado-read-capabilities.ts", pluginRoot))}"`, { stdio: "pipe" }) } catch {}
-  const js = await load(join(runtime, "validator.js")); const ts = await load(join(compiled, "bass-validate-ado-read-capabilities.js"))
+  const js = await load(join(runtime, "validator.js")); const tsModule = await import(`${pathToFileURL(join(compiled, "bass-validate-ado-read-capabilities.js")).href}?${Math.random()}`); const ts = tsModule.validateAdoReadCapabilities
   const brief = "- Expected source: ADO Work Item (42). Reason: unavailable.\n- Expected source: ADO relations (42). Reason: unavailable.\n- Expected source: ADO history (42). Reason: unavailable."
   const jsResult = js({ projectDirectory: project, brief }); const tsResult = ts({ projectDirectory: project, brief })
   assert.deepEqual(tsResult, jsResult, "TS and JS validator results must match")
@@ -66,5 +66,18 @@ try {
     assert.equal(unsafeJs.mappings.Wiki.valid, false, `unsafe tool name ${JSON.stringify(unsafeName)} must be rejected`)
     assert.doesNotMatch(unsafeJs.permissionFragment, new RegExp(`"${unsafeName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}": allow`), `unsafe tool name ${JSON.stringify(unsafeName)} must not enter permissions`)
   }
+  write(join(project, "project-context", "ado-read-capabilities.md"), map)
+  const wrapperSource = readFileSync(fileURLToPath(new URL("bass-validate-ado-read-capabilities.ts", pluginRoot)), "utf8").replace('from "node:fs"', 'from "node:fs"')
+  writeFileSync(join(compiled, "wrapper.ts"), wrapperSource)
+  try { execSync(`npx tsc --target ES2022 --module NodeNext --moduleResolution NodeNext --skipLibCheck --noEmitOnError false --outDir "${compiled}" "${join(compiled, "wrapper.ts")}"`, { stdio: "pipe" }) } catch {}
+  const wrapper = await import(`${pathToFileURL(join(compiled, "wrapper.js")).href}?${Math.random()}`)
+  const plugin = await wrapper.BassValidateAdoReadCapabilitiesPlugin()
+  const output = await plugin.tool.bass_validate_ado_read_capabilities.execute({ projectDirectory: project, brief })
+  assert.equal(typeof output, "string", "OpenCode adapter output must be a string")
+  assert.deepEqual(JSON.parse(output), jsResult)
+  const jsPlugin = await (await import(`${pathToFileURL(join(runtime, "validator.js")).href}?${Math.random()}`)).BassValidateAdoReadCapabilitiesPlugin()
+  const jsOutput = await jsPlugin.tool.bass_validate_ado_read_capabilities.execute({ projectDirectory: project, brief })
+  assert.equal(typeof jsOutput, "string", "JavaScript OpenCode adapter output must be a string")
+  assert.deepEqual(JSON.parse(jsOutput), jsResult)
   console.log("bass-validate-ado-read-capabilities behavioral contract passed")
 } finally { rmSync(root, { recursive: true, force: true }) }

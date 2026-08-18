@@ -20,4 +20,4 @@ export function validateAdoReadCapabilities({ projectDirectory, brief }: { proje
   return { mappings, permissionFragment, dispatch, unmappedGaps }
 }
 
-export const BassValidateAdoReadCapabilitiesPlugin: Plugin = async () => ({ tool: { bass_validate_ado_read_capabilities: tool({ description: "Deterministically validate project ADO read mappings and plan Reader dispatch without MCP calls.", args: { projectDirectory: tool.schema.string(), brief: tool.schema.string() }, async execute(args) { return validateAdoReadCapabilities(args) } }) } })
+export const BassValidateAdoReadCapabilitiesPlugin: Plugin = async () => ({ tool: { bass_validate_ado_read_capabilities: tool({ description: "Deterministically validate project ADO read mappings and plan Reader dispatch without MCP calls.", args: { projectDirectory: tool.schema.string(), brief: tool.schema.string() }, async execute(args) { return JSON.stringify(validateAdoReadCapabilities(args)) } }) } })
