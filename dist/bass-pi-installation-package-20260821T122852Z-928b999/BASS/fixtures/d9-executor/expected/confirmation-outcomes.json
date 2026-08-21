@@ -1,7 +1,0 @@
-{
-  "absent-confirmation": { "status": "blocked", "dispatched": false },
-  "expired-token": { "status": "blocked", "dispatched": false },
-  "tampered-hash": { "status": "blocked", "dispatched": false },
-  "mutated-operation": { "status": "blocked", "dispatched": false },
-  "replay": { "status": "blocked", "dispatched": false }
-}

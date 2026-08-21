@@ -1,8 +1,0 @@
-{
-  "target": "F-001",
-  "extracts": [
-    { "category": "pipeline", "source": "ADO Pipeline", "location": "pipeline read unavailable", "workItemIds": ["1001"], "status": "unauthorized", "blocker": "Pipeline read is unauthorized; map a verified read-only capability.", "classification": "Question", "confidence": "medium" },
-    { "category": "pipeline", "source": "ADO Pipeline", "location": "unrelated pipeline", "workItemIds": ["9999"], "status": "failed", "blocker": "Unrelated pipeline blocker must not be reported.", "classification": "Conflict", "confidence": "high" },
-    { "category": "unknown_technical", "source": "Unsupported technical source", "location": "unsupported category", "workItemIds": ["1001"], "status": "observed" }
-  ]
-}

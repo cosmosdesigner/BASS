@@ -1,5 +1,0 @@
-{
-  "sync-local-to-ado": { "status": "ready", "localOnly": [{ "direction": "local_to_ado", "field": "title", "before": "Base", "after": "Local", "baseline": "Base" }], "adoOnly": [], "conflicts": [] },
-  "sync-ado-to-local": { "status": "ready", "localOnly": [], "adoOnly": [{ "direction": "ado_to_local", "field": "title", "before": "Base", "after": "ADO", "baseline": "Base" }], "conflicts": [] },
-  "sync-overlap-conflict": { "status": "blocked_conflict", "localOnly": [], "adoOnly": [], "conflicts": [{ "classification": "Conflict", "field": "title", "baseline": "Base", "local": "Local", "ado": "ADO", "sources": ["local artifact", "current ADO Work Item snapshot", "last synchronized baseline"], "status": "open" }] }
-}

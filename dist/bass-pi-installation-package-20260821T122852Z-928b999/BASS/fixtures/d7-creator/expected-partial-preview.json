@@ -1,7 +1,0 @@
-{
-  "writeStatus": "blocked",
-  "artifactMarkdownFile": "expected-partial-preview.md",
-  "gaps": ["Resolve cited conflicts before approval or ADO preview."],
-  "questions": ["Which eligibility policy is authoritative?"],
-  "conflicts": ["The wiki permits manual approval while the work item requires automatic approval."]
-}

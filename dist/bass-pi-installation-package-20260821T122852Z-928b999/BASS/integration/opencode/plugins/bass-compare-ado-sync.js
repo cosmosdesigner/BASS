@@ -1,9 +1,0 @@
-"use strict";
-let tool; try { ({ tool } = require("@opencode-ai/plugin")); } catch { tool = (value) => value; tool.schema = { object: () => ({}), array: () => ({}) }; }
-function compareAdoSync(input = {}) {
-  const baseline = input.baseline || {}, local = input.local || {}, ado = input.ado || {}, fields = Array.isArray(input.fields) ? input.fields : [], localOnly = [], adoOnly = [], conflicts = [];
-  for (const field of fields) { if (typeof field !== "string" || !field) continue; const base = baseline[field], localValue = local[field], adoValue = ado[field], localChanged = !Object.is(base, localValue), adoChanged = !Object.is(base, adoValue); if (localChanged && adoChanged && !Object.is(localValue, adoValue)) conflicts.push({ classification: "Conflict", field, baseline: base, local: localValue, ado: adoValue, sources: ["local artifact", "current ADO Work Item snapshot", "last synchronized baseline"], status: "open" }); else if (localChanged && !adoChanged) localOnly.push({ direction: "local_to_ado", field, before: adoValue, after: localValue, baseline: base }); else if (adoChanged && !localChanged) adoOnly.push({ direction: "ado_to_local", field, before: localValue, after: adoValue, baseline: base }); }
-  return { status: conflicts.length ? "blocked_conflict" : "ready", localOnly, adoOnly, conflicts };
-}
-const BassCompareAdoSyncPlugin = async () => ({ tool: { bass_compare_ado_sync: tool({ description: "Compare local, current ADO, and baseline values without selecting a conflict winner.", args: { fields: tool.schema.array(tool.schema.string()), baseline: tool.schema.object(), local: tool.schema.object(), ado: tool.schema.object() }, async execute(args) { return JSON.stringify(compareAdoSync(args)); } }) } });
-module.exports = { compareAdoSync, BassCompareAdoSyncPlugin };

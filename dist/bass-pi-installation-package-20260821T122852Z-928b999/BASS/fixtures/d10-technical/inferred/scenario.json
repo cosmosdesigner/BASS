@@ -1,8 +1,0 @@
-{
-  "target": "F-001",
-  "extracts": [
-    { "category": "repository", "source": "ADO Repository", "location": "refs/heads/feature/customer-onboarding", "branch": "feature/customer-onboarding" },
-    { "category": "commit", "source": "ADO Repository", "location": "def456", "commitMessage": "Customer onboarding validation" },
-    { "category": "repository", "source": "ADO Repository", "location": "src/onboarding.ts", "fileText": "Customer onboarding workflow" }
-  ]
-}

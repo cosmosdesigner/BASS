@@ -1,9 +1,0 @@
-{
-  "scenarios": [
-    { "id": "mcp-unavailable", "adapter": "snapshot_throws", "expected": { "status": "snapshot_failed", "dispatched": false, "actionLog": ["update_field", "adapter-mcp-unavailable", "EVD-001", "DEC-001", "Executor", "2026-08-15", "snapshot_failed", "<token-id>"] } },
-    { "id": "permission-denied", "adapter": "permission_denied", "expected": { "status": "failed", "dispatched": true, "actionLog": ["update_field", "adapter-permission-denied", "EVD-001", "DEC-001", "Executor", "2026-08-15", "permission_denied", "<token-id>"] } },
-    { "id": "partial-remote-failure", "adapter": "partial_failure", "expected": { "status": "failed", "dispatched": true, "actionLog": ["update_field", "adapter-partial-remote-failure", "EVD-001", "DEC-001", "Executor", "2026-08-15", "partial_failure", "<token-id>"] } },
-    { "id": "concurrent-version-mismatch", "adapter": "version_changed", "expected": { "status": "blocked", "dispatched": false } },
-    { "id": "local-recording-failure", "adapter": "success", "failRecording": true, "expected": { "status": "remote_succeeded_local_recording_failed", "dispatched": true, "recovery": true } }
-  ]
-}

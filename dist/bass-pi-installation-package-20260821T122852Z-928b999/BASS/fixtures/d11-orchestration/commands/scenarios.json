@@ -1,4 +1,0 @@
-[
-  {"name":"understand","route":{"command":"/bass understand","context":{"target":"US-001","contextStatus":"ready"}}},
-  {"name":"create-approval","route":{"command":"/bass create-feature","context":{"target":"F-001","contextStatus":"ready","attestations":[{"workflow":"Create","target":"F-001","status":"approval_required","expiresAt":"2099-01-01T00:00:00.000Z","integrity":"6c3fc706ae24fceb7450b1015250e783655972f551a8fa06002ed32a1c04a45e"}]}}}
-]

@@ -1,8 +1,0 @@
-{
-  "status": "warning",
-  "releaseState": "unknown",
-  "evidence": [
-    { "category": "pipeline", "source": "ADO Pipeline", "location": "Run 9", "workItemIds": ["1001"], "status": "failed", "classification": "Fact", "confidence": "high", "basis": "" },
-    { "category": "deployment", "source": "ADO Deployment", "location": "Deploy 9", "workItemIds": ["1001"], "status": "failed", "classification": "Fact", "confidence": "high", "basis": "" }
-  ]
-}

@@ -1,3 +1,0 @@
-[
-  {"name":"reject-synchronize","route":{"command":"/bass next","context":{}},"workflowResult":{"status":"ready","workflow":"Review","result":{"type":"local_file","source":"review.md","location":"# Findings","classification":"Fact","confidence":"high","actor":"BASS","date":"2026-08-16","source_version":"fixture-v1","related_items":["US-001"],"claim":"Review completed."},"evidence":[{"type":"local_file","source":"review.md","location":"# Findings","classification":"Fact","confidence":"high","actor":"BASS","date":"2026-08-16","source_version":"fixture-v1","related_items":["US-001"],"claim":"Review completed."}],"gaps":[],"conflicts":[],"nextAction":"Choose a workflow."},"next":{"request":"synchronize it now"}}
-]

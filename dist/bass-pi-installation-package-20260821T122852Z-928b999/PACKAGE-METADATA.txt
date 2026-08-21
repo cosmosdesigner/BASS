@@ -1,5 +1,0 @@
-Package: bass-pi-installation-package-20260821T122852Z-928b999
-Created UTC: 20260821T122852Z
-Git commit: 928b99938d95e09fafa4634f90a33f947c75d646
-Source path: /Users/carlosalmeida/Documents/freelance/bass
-Package type: Pi package with package.json pi manifest

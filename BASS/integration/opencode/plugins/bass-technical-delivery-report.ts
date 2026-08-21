@@ -1,5 +1,0 @@
-import report = require("./bass-technical-delivery-report.js")
-type TechnicalExtract = { category?: string, source?: string, location?: string, retrievedDate?: string, workItemIds?: string[], workItemUrl?: string, links?: string[], status?: string, state?: string, blocker?: string, classification?: string, confidence?: string, title?: string, branch?: string, tag?: string, commitMessage?: string, fileText?: string, operation?: string }
-type ReleaseAttribution = { sources: { type: "ado_pipeline", source?: string, location?: string }[], classification: "Fact" | "Question" | "Conflict", confidence: "high" | "low", evidence_gap?: string, conflict?: string }
-export const technicalDeliveryReport = report.technicalDeliveryReport as (input: { directory: string, projectName: string, target: string, extracts?: TechnicalExtract[] }) => { releaseState: "released" | "unknown", releaseAttribution?: ReleaseAttribution, status: string, markdown: string, evidence: TechnicalExtract[] }
-export const BassTechnicalDeliveryReportPlugin: unknown = report.BassTechnicalDeliveryReportPlugin
