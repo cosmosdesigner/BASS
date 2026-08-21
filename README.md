@@ -24,7 +24,7 @@ Install the repository as a Pi package:
 pi install git:git@github.com:cosmosdesigner/BASS.git
 ```
 
-The Pi adapter provides `/bass init`, `/bass status`, and `/bass understand` as direct local workflows; these commands do not send a prompt to the active model/provider. Review the package before installation because Pi extensions run with the host user's permissions.
+The Pi adapter provides the complete BASS command surface: `/bass init`, `/bass status`, `/bass understand`, `/bass load-context`, `/bass discover`, `/bass technical-delivery`, `/bass brainstorm`, `/bass create-feature`, `/bass create-us`, `/bass create-ac`, `/bass create-proposal`, `/bass review`, `/bass challenge`, `/bass improve`, `/bass create-ado`, `/bass sync-ado`, `/bass update-ado`, `/bass link-items`, `/bass transition`, `/bass next`, and `/bass diagnose`. `init`, `status`, and `understand` remain direct local workflows; the remaining commands dispatch their matching BASS skill with the original OpenCode workflow contract. Review the package before installation because Pi extensions run with the host user's permissions.
 
 ## Start Here
 

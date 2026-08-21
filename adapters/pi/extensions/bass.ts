@@ -2,10 +2,15 @@ import { mkdir, readFile, readdir, stat, writeFile } from "node:fs/promises";
 import { dirname, join, relative } from "node:path";
 import type { ExtensionAPI, ExtensionCommandContext } from "@earendil-works/pi-coding-agent";
 
-const workflows = new Set(["init", "status", "understand"]);
+const workflows = new Set([
+  "brainstorm", "challenge", "create-ac", "create-ado", "create-feature", "create-proposal",
+  "create-us", "diagnose", "discover", "improve", "init", "link-items", "load-context",
+  "next", "review", "status", "sync-ado", "technical-delivery", "transition", "understand",
+  "update-ado",
+]);
 
 function usage(): string {
-  return "Usage: /bass <init|status|understand> [arguments]";
+  return "Usage: /bass <brainstorm|challenge|create-ac|create-ado|create-feature|create-proposal|create-us|diagnose|discover|improve|init|link-items|load-context|next|review|status|sync-ado|technical-delivery|transition|understand|update-ado> [arguments]";
 }
 
 function message(ctx: ExtensionCommandContext, content: string, details: Record<string, unknown> = {}) {
@@ -94,9 +99,24 @@ async function understand(ctx: ExtensionCommandContext, query?: string): Promise
   }
 }
 
+const deterministicWorkflows = new Set(["init", "status", "understand"]);
+
+function skillName(workflow: string): string {
+  return `bass-${workflow}`;
+}
+
 export default function (pi: ExtensionAPI) {
+  pi.on("before_agent_start", async (event) => {
+    try {
+      const orchestrator = await readFile(new URL("../../skills/bass-agent-bass/SKILL.md", import.meta.url), "utf8");
+      return { systemPrompt: `${event.systemPrompt}\n\n${orchestrator}` };
+    } catch {
+      return undefined;
+    }
+  });
+
   pi.registerCommand("bass", {
-    description: "Run a BASS local workflow without sending it to an LLM provider",
+    description: "Run any BASS workflow; deterministic local workflows stay local and all other workflows use their BASS skill.",
     handler: async (args, ctx) => {
       const [workflow, ...rest] = args.trim().split(/\s+/).filter(Boolean);
       if (!workflows.has(workflow ?? "")) {
@@ -104,9 +124,17 @@ export default function (pi: ExtensionAPI) {
         return;
       }
 
-      if (workflow === "init") await initialize(ctx, rest[0]);
-      else if (workflow === "status") await status(ctx, rest[0]);
-      else await understand(ctx, rest[0]);
+      if (deterministicWorkflows.has(workflow!)) {
+        if (workflow === "init") await initialize(ctx, rest[0]);
+        else if (workflow === "status") await status(ctx, rest[0]);
+        else await understand(ctx, rest[0]);
+        return;
+      }
+
+      const argumentsText = rest.join(" ");
+      pi.sendUserMessage(`/skill:${skillName(workflow!)}${argumentsText ? ` ${argumentsText}` : ""}`, {
+        expandPromptTemplates: true,
+      });
     },
   });
 }

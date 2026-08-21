@@ -1,17 +1,32 @@
 ---
 name: bass-init
-description: Initialize one local BASS project scaffold without Azure DevOps mutation. Use for /bass init requests.
+description: Initialize one new BASS project scaffold without Azure DevOps mutation.
 ---
 
-# BASS Initialize
+# BASS Init
 
-Use the repository's BASS initialization workflow.
+## Canonical Workflow
 
-1. Read `AGENTS.md`, `README.md`, and the applicable files under `rules/`.
-2. Confirm the requested project name is a lowercase direct-child slug such as `customer-onboarding`.
-3. Create only the local scaffold under `BASS/projects/<project-name>/`.
-4. Do not clone demo evidence, call Azure DevOps, or overwrite an existing project.
-5. Preserve missing Wiki URLs as explicit Questions/evidence gaps.
-6. Report created paths, gaps, and exactly one next action.
+Explicit command entry point for **Initialize**. Interpret `$ARGUMENTS` as a project
+slug plus optional project title and official Functional/Technical ADO Wiki URLs.
+The project slug must be one lowercase direct-child name such as
+`customer-onboarding`.
 
-If the BASS distribution or trusted project root is unavailable, stop and report the evidence gap instead of guessing a location.
+## Gate And Route
+
+Route: BASS only. Do not delegate to a specialist. Call `bass_init_project` exactly
+once after validating the requested project name. The command itself is the explicit
+user request to create the local BASS scaffold; it does not authorize any ADO write.
+If a supplied Wiki URL is not a valid Azure DevOps Wiki URL, block instead of storing
+it. Missing Wiki URLs are allowed and remain explicit configuration gaps.
+
+## Result
+
+Return the uniform BASS response envelope. `Result` must identify the initialized
+project and created paths. `Gaps and Conflicts` must preserve missing Functional or
+Technical Wiki references. `Next Action` should normally be `/bass status <project>`
+or configuration of a missing source.
+
+Never copy fictional demo evidence into the new project. Never call MCP or Azure
+DevOps. Never overwrite an existing project. Roll back a partially created scaffold
+if initialization fails.
