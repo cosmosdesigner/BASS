@@ -24,7 +24,7 @@ Install the repository as a Pi package:
 pi install git:git@github.com:cosmosdesigner/BASS.git
 ```
 
-The Pi adapter provides `/bass init`, `/bass status`, and `/bass understand` and loads the corresponding evidence-first skills. Review the package before installation because Pi extensions run with the host user's permissions.
+The Pi adapter provides `/bass init`, `/bass status`, and `/bass understand` as direct local workflows; these commands do not send a prompt to the active model/provider. Review the package before installation because Pi extensions run with the host user's permissions.
 
 ## Start Here
 
