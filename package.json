@@ -2,6 +2,9 @@
   "name": "bass",
   "version": "0.1.0",
   "description": "Evidence-first Business Analysis Assistant",
+  "dependencies": {
+    "typebox": "^1.3.7"
+  },
   "keywords": ["pi-package"],
   "pi": {
     "extensions": ["./adapters/pi/extensions"],
