@@ -28,22 +28,22 @@ host/dependency-unverified and is not claimed by this report.
 
 | Command | Result | Evidence |
 | --- | --- | --- |
-| `node BASS/integration/opencode/plugins/bass-ado-executor.behavior-test.mjs` | Pass | `bass-ado-executor behavior tests passed`; `bass-ado-executor fixture tests passed` |
-| `node BASS/integration/opencode/plugins/bass-ado-executor-core-findings.red-test.mjs` | Pass | `bass-ado-executor core finding RED tests passed` |
-| `node BASS/integration/opencode/plugins/bass-ado-executor-recovery.red-test.mjs` | Pass | `bass-ado-executor recovery RED tests passed` |
-| `node BASS/integration/opencode/plugins/bass-ado-executor-journal.red-test.mjs` | Pass | `bass-ado-executor journal RED tests passed` |
-| `node BASS/integration/opencode/plugins/bass-ado-executor-journal-p1.red-test.mjs` | Pass | `bass-ado-executor journal P1 RED tests passed` |
-| `node BASS/integration/opencode/plugins/bass-ado-executor-journal-durability.red-test.mjs` | Pass | `bass-ado-executor journal durability RED tests passed` |
-| `node BASS/integration/opencode/plugins/bass-ado-executor-journal-cleanup.red-test.mjs` | Pass | `bass-ado-executor journal cleanup RED tests passed` |
-| `node BASS/integration/opencode/plugins/bass-validate-ado-read-capabilities.behavior-test.mjs` | Pass | `bass-validate-ado-read-capabilities behavioral contract passed` |
-| `node BASS/integration/opencode/plugins/bass-validate-ado-discovery-capabilities.behavior-test.mjs` | Pass | `bass-validate-ado-discovery-capabilities behavioral contract passed` |
+| `node BASS/adapters/opencode/plugins/bass-ado-executor.behavior-test.mjs` | Pass | `bass-ado-executor behavior tests passed`; `bass-ado-executor fixture tests passed` |
+| `node BASS/adapters/opencode/plugins/bass-ado-executor-core-findings.red-test.mjs` | Pass | `bass-ado-executor core finding RED tests passed` |
+| `node BASS/adapters/opencode/plugins/bass-ado-executor-recovery.red-test.mjs` | Pass | `bass-ado-executor recovery RED tests passed` |
+| `node BASS/adapters/opencode/plugins/bass-ado-executor-journal.red-test.mjs` | Pass | `bass-ado-executor journal RED tests passed` |
+| `node BASS/adapters/opencode/plugins/bass-ado-executor-journal-p1.red-test.mjs` | Pass | `bass-ado-executor journal P1 RED tests passed` |
+| `node BASS/adapters/opencode/plugins/bass-ado-executor-journal-durability.red-test.mjs` | Pass | `bass-ado-executor journal durability RED tests passed` |
+| `node BASS/adapters/opencode/plugins/bass-ado-executor-journal-cleanup.red-test.mjs` | Pass | `bass-ado-executor journal cleanup RED tests passed` |
+| `node BASS/adapters/opencode/plugins/bass-validate-ado-read-capabilities.behavior-test.mjs` | Pass | `bass-validate-ado-read-capabilities behavioral contract passed` |
+| `node BASS/adapters/opencode/plugins/bass-validate-ado-discovery-capabilities.behavior-test.mjs` | Pass | `bass-validate-ado-discovery-capabilities behavioral contract passed` |
 | `node BASS/test-support/d9/ts-wrapper-load-regression.mjs` | Pass | TypeScript wrappers compile/load with a minimal local plugin shim and register both tools |
 
 ## Requirement Evidence
 
 | Requirement | Evidence location | Outcome |
 | --- | --- | --- |
-| Executor and four D9 command boundaries require a current mapped snapshot, one operation, preview, exact token, and explicit confirmation | `integration/opencode/agents/executor.md:19-45`; `commands/bass/{sync-ado,update-ado,link-items,transition}.md` | Pass, source review |
+| Executor and four D9 command boundaries require a current mapped snapshot, one operation, preview, exact token, and explicit confirmation | `adapters/opencode/agents/executor.md:19-45`; `commands/bass/{sync-ado,update-ado,link-items,transition}.md` | Pass, source review |
 | Write map categories, exact safe tools, deny-first permissions, configured fields, and unavailable unknown fields | `templates/ado-write-capabilities-template.md:3-72`; `templates/configured-work-item-fields-template.md:3-26`; `plugins/bass-validate-ado-write-capabilities.js:3-21` | Pass |
 | All supported operations: five Work Item creates, standard/custom fields, tag add/remove, comment, relation add/remove, transition, and import | `fixtures/d9-executor/operations/mapped-operations.json:3-16`; `plugins/bass-ado-executor.behavior-test.mjs:77-101` | Pass |
 | A token is single-operation, HMAC issuer-bound, evidence/Decision-linked, confirmation-gated, and requires a future canonical RFC3339 UTC millisecond expiry (`YYYY-MM-DDTHH:mm:ss.sssZ`) that round-trips through `Date#toISOString`; replay, impossible/noncanonical/malformed expiry, caller-rehashed mutation, batch, and unmapped fields are blocked before adapter access | `plugins/bass-plan-ado-operation.js:5-17,36-41`; `plugins/bass-execute-confirmed-ado-operation.js:25-29`; `fixtures/d9-executor/failures/confirmation-integrity.json`; `plugins/bass-ado-executor.behavior-test.mjs:98-128,141-144` | Pass |

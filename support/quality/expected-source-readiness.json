@@ -6,7 +6,7 @@
   "reason": "Portable readiness is derived at runtime from configured harnesses and required artifact, report, and documentation checks. Target-host ADO evidence remains pending until recorded from an isolated target host.",
   "requiredArtifacts": [
     "AGENTS.md",
-    "integration/opencode/agents/bass.md"
+    "adapters/opencode/agents/bass.md"
   ],
   "requiredDocumentation": [],
   "targetHostChecks": [

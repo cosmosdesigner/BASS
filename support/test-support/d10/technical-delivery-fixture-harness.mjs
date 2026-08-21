@@ -3,8 +3,8 @@ import { cpSync, mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } f
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
-import report from "../../../integration/opencode/plugins/bass-technical-delivery-report.js";
-import persistence from "../../../integration/opencode/plugins/bass-persist-approved-technical-evidence.js";
+import report from "../../../adapters/opencode/plugins/bass-technical-delivery-report.js";
+import persistence from "../../../adapters/opencode/plugins/bass-persist-approved-technical-evidence.js";
 
 const root = fileURLToPath(new URL("../../..", import.meta.url));
 const fixtures = join(root, "support", "fixtures", "d10-technical");

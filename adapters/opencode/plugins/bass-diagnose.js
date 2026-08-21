@@ -38,9 +38,9 @@ export const BassDiagnosePlugin = async () => ({
                 const bassRoot = join(context.directory, "BASS");
                 const required = [
                     "AGENTS.md", "projects", "rules", "rules/orchestration.md", "rules/access-control.md", "rules/provenance.md",
-                    "integration/opencode/agents/bass.md", "integration/opencode/agents/reader.md", "integration/opencode/agents/explorer.md", "integration/opencode/agents/creator.md", "integration/opencode/agents/reviewer.md", "integration/opencode/agents/editor.md", "integration/opencode/agents/executor.md",
-                    "integration/opencode/commands/bass/diagnose.md", "integration/opencode/commands/bass/init.md", "integration/opencode/commands/bass/status.md", "integration/opencode/commands/bass/brainstorm.md", "integration/opencode/commands/bass/challenge.md",
-                    "integration/opencode/plugins/bass-diagnose.ts", "integration/opencode/plugins/bass-init-project.ts", "integration/opencode/plugins/bass-project-status.ts", "integration/opencode/plugins/bass-route-workflow.ts",
+                    "adapters/opencode/agents/bass.md", "adapters/opencode/agents/reader.md", "adapters/opencode/agents/explorer.md", "adapters/opencode/agents/creator.md", "adapters/opencode/agents/reviewer.md", "adapters/opencode/agents/editor.md", "adapters/opencode/agents/executor.md",
+                    "adapters/opencode/commands/bass/diagnose.md", "adapters/opencode/commands/bass/init.md", "adapters/opencode/commands/bass/status.md", "adapters/opencode/commands/bass/brainstorm.md", "adapters/opencode/commands/bass/challenge.md",
+                    "adapters/opencode/plugins/bass-diagnose.ts", "adapters/opencode/plugins/bass-init-project.ts", "adapters/opencode/plugins/bass-project-status.ts", "adapters/opencode/plugins/bass-route-workflow.ts",
                 ];
                 const missing = required.filter((entry) => !existsSync(join(bassRoot, entry)));
                 const distribution = missing.length ? { status: "blocked", observed: `Missing required BASS path(s): ${missing.join(", ")}.`, next: "Copy the complete BASS directory into the target project root." } : { status: "ready", observed: "Required local BASS distribution paths, P0 workflows, and portable OpenCode bundle artifacts are present.", next: "Keep the BASS distribution and portable integration bundle intact when creating projects." };

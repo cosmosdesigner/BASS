@@ -16,6 +16,16 @@ Use BASS to understand what exists, explore dependencies, shape Features and Use
 | See technical delivery state | "Show PR, pipeline, deployment, and blockers for F-001." |
 | Prepare an ADO change | "Prepare a Work Item update for US-001." |
 
+## Install in Pi
+
+Install the repository as a Pi package:
+
+```bash
+pi install git:git@github.com:cosmosdesigner/BASS.git
+```
+
+The Pi adapter provides `/bass init`, `/bass status`, and `/bass understand` and loads the corresponding evidence-first skills. Review the package before installation because Pi extensions run with the host user's permissions.
+
 ## Start Here
 
 1. Create or open a BASS project.
@@ -97,4 +107,4 @@ This requires an isolated target-ready environment. BASS shows the exact field-l
 
 ## Source Boundary
 
-This repository contains the BASS source bundle. Runtime source remains under `integration/`, while fixtures, quality checks, reports, and test harnesses are separated under `support/`. Host installations, project instances, generated packages, and supplemental documentation are intentionally maintained outside this source tree.
+This repository contains the BASS source bundle. Runtime source remains under `adapters/`, while fixtures, quality checks, reports, and test harnesses are separated under `support/`. Host installations, project instances, generated packages, and supplemental documentation are intentionally maintained outside this source tree.

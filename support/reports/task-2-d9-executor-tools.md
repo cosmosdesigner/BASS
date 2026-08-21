@@ -11,14 +11,14 @@
 
 ## Test Evidence
 
-- RED: `node BASS/integration/opencode/plugins/bass-ado-executor.behavior-test.mjs` initially failed because the D9 modules were absent.
-- GREEN: `node BASS/integration/opencode/plugins/bass-ado-executor.behavior-test.mjs` passed.
+- RED: `node BASS/adapters/opencode/plugins/bass-ado-executor.behavior-test.mjs` initially failed because the D9 modules were absent.
+- GREEN: `node BASS/adapters/opencode/plugins/bass-ado-executor.behavior-test.mjs` passed.
 - Regression: D7/D8 behavior suites passed: creator preview, improvement, and approved improvement persistence.
 
 ## Core Finding Repair
 
 - RED evidence is preserved in `task-2-d9-core-findings-red.md`. The separate core suite initially stopped at the absent final `getCurrentSnapshot` boundary, returning `blocked` where safe dispatch was expected.
-- GREEN: `node BASS/integration/opencode/plugins/bass-ado-executor-core-findings.red-test.mjs` passed after the repair.
+- GREEN: `node BASS/adapters/opencode/plugins/bass-ado-executor-core-findings.red-test.mjs` passed after the repair.
 - Executor now obtains `adapter.getCurrentSnapshot(target)` immediately before either remote dispatch or approved local import and requires exact Work Item ID and version equality.
 - Dispatch exceptions, permission denial, and partial adapter results append actual-status rows to the canonical Action Log. A remote success whose Action Log append fails emits the recovery status only when the bounded recovery path is provided; it never reverses the remote operation.
 - Confirmed `query/import` updates only approved in-root JSON local artifact and baseline files atomically and does not call `adapter.dispatch`.

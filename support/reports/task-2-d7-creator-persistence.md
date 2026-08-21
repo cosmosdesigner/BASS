@@ -19,7 +19,7 @@ This report covers D7 Task 2 Creator preview and approved Acceptance Criteria pe
 Command run:
 
 ```text
-node BASS/integration/opencode/plugins/bass-creator-preview.behavior-test.mjs
+node BASS/adapters/opencode/plugins/bass-creator-preview.behavior-test.mjs
 ```
 
 Result:
@@ -47,7 +47,7 @@ The suite compiles the TypeScript preview source and asserts parity against the 
 RED command:
 
 ```text
-node BASS/integration/opencode/plugins/bass-persist-approved-artifact.behavior-test.mjs
+node BASS/adapters/opencode/plugins/bass-persist-approved-artifact.behavior-test.mjs
 ```
 
 RED result:
@@ -59,8 +59,8 @@ AssertionError: expected approved Acceptance Criteria persistence to be persiste
 GREEN commands:
 
 ```text
-node BASS/integration/opencode/plugins/bass-persist-approved-artifact.behavior-test.mjs
-node BASS/integration/opencode/plugins/bass-creator-preview.behavior-test.mjs
+node BASS/adapters/opencode/plugins/bass-persist-approved-artifact.behavior-test.mjs
+node BASS/adapters/opencode/plugins/bass-creator-preview.behavior-test.mjs
 ```
 
 GREEN result:

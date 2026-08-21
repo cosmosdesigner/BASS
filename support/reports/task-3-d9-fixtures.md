@@ -10,7 +10,7 @@
 
 ## Verification
 
-- `node BASS/integration/opencode/plugins/bass-ado-executor.behavior-test.mjs`
+- `node BASS/adapters/opencode/plugins/bass-ado-executor.behavior-test.mjs`
 - The suite makes no MCP or Azure DevOps calls. Adapter doubles provide snapshots and dispatch outcomes entirely in process.
 
 ## Remaining Scope

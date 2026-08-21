@@ -9,7 +9,7 @@
 
 ## Verification
 
-- `node BASS/integration/opencode/plugins/bass-context-brief.behavior-test.mjs`
+- `node BASS/adapters/opencode/plugins/bass-context-brief.behavior-test.mjs`
 
 The fixture comparison and JavaScript/TypeScript parity checks passed.
 

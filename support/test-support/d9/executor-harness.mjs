@@ -1,5 +1,5 @@
-import planner from "../../integration/opencode/plugins/bass-plan-ado-operation.js";
-import executor from "../../integration/opencode/plugins/bass-execute-confirmed-ado-operation.js";
+import planner from "../../../adapters/opencode/plugins/bass-plan-ado-operation.js";
+import executor from "../../../adapters/opencode/plugins/bass-execute-confirmed-ado-operation.js";
 import { createHash } from "node:crypto";
 
 export const createPlannerHarness = (trustedContext) => {

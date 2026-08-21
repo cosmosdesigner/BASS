@@ -7,8 +7,8 @@ import { fileURLToPath, pathToFileURL } from "node:url"
 const pluginRoot = new URL(".", import.meta.url)
 const root = mkdtempSync(join(tmpdir(), "bass-d10-"))
 const fixtureRoot = join(root, "workspace")
-const copy = (name) => cpSync(fileURLToPath(new URL(name, pluginRoot)), join(fixtureRoot, "BASS", "integration", "opencode", "plugins", name))
-const load = async (name) => import(`${pathToFileURL(join(fixtureRoot, "BASS", "integration", "opencode", "plugins", name)).href}?${Math.random()}`)
+const copy = (name) => cpSync(fileURLToPath(new URL(name, pluginRoot)), join(fixtureRoot, "BASS", "adapters", "opencode", "plugins", name))
+const load = async (name) => import(`${pathToFileURL(join(fixtureRoot, "BASS", "adapters", "opencode", "plugins", name)).href}?${Math.random()}`)
 
 try {
   cpSync(fileURLToPath(new URL("../../../..", pluginRoot)), fixtureRoot, { recursive: true })

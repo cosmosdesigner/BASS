@@ -17,26 +17,26 @@ approved persistence remains local to the selected BASS project.
 
 | D7 requirement | Verification evidence and source location | Classification | Confidence | Outcome |
 | --- | --- | --- | --- | --- |
-| Preview-first commands and explicit approval | `BASS/integration/opencode/commands/bass/create-{feature,us,ac,proposal}.md`; `BASS/integration/opencode/agents/creator.md`; `BASS/integration/opencode/plugins/bass-persist-approved-artifact.behavior-test.mjs:50-63` | Fact | High | Pass |
-| Templates, provenance, assumptions, and GWT | `BASS/templates/feature-template.md:26-67`; `BASS/templates/user-story-template.md:27-72`; `BASS/templates/functional-proposal-template.md:24-58`; `BASS/templates/acceptance-criteria-template.md:8-41`; `BASS/integration/opencode/plugins/bass-creator-preview.behavior-test.mjs:39-80` | Fact | High | Pass |
-| Resolved EVD/DEC provenance lineage and links | `BASS/integration/opencode/plugins/bass-creator-preview.ts:21-36`; `BASS/integration/opencode/plugins/bass-creator-preview.behavior-test.mjs:27-57`; `BASS/integration/opencode/plugins/bass-persist-approved-artifact.behavior-test.mjs:28-64` | Fact | High | Pass |
-| Explicit assumptions and assumption-only blocking | `BASS/integration/opencode/plugins/bass-creator-preview.ts:21-36`; `BASS/integration/opencode/plugins/bass-creator-preview.behavior-test.mjs:49-57,68-75` | Fact | High | Pass |
-| Preview integrity, approval, containment, and persistence | `BASS/integration/opencode/plugins/bass-persist-approved-artifact.ts:14-29`; `BASS/integration/opencode/plugins/bass-persist-approved-artifact.behavior-test.mjs:50-54,58-82,103-106` | Fact | High | Pass |
-| Scoped AC update and labeled-assumption preservation | `BASS/integration/opencode/plugins/bass-persist-approved-artifact.ts:17-23`; `BASS/integration/opencode/plugins/bass-persist-approved-artifact.behavior-test.mjs:55-82` | Fact | High | Pass |
-| Atomic target/artifact and register updates | `BASS/integration/opencode/plugins/bass-persist-approved-artifact.ts:22-28`; `BASS/integration/opencode/plugins/bass-persist-approved-artifact.behavior-test.mjs:83-99,107-135` | Fact | High | Pass |
-| Local-only Feature/User Story ADO preview and proposal promotion | `BASS/integration/opencode/plugins/bass-creator-preview.ts:35-36`; `BASS/integration/opencode/plugins/bass-creator-preview.behavior-test.mjs:39-47,63-83,123-127` | Fact | High | Pass |
-| No D7 ADO/MCP operation | `BASS/integration/opencode/agents/creator.md:36-47`; `BASS/integration/opencode/commands/bass/create-{feature,us,ac,proposal}.md`; D7 Creator/persistence TS/JS source scan recorded below | Fact | Medium | Pass, source-only |
-| Complete, partial, and promotion snapshots | `BASS/fixtures/d7-creator/{complete,partial,promotion}/request.json`; `BASS/fixtures/d7-creator/expected-*.{json,md}`; `BASS/integration/opencode/plugins/bass-creator-preview.behavior-test.mjs:108-127` | Fact | High | Pass |
-| Portable-only delivery and no host installation | `BASS/integration/opencode/{agents,commands,plugins}/`; workspace `.opencode/**` search returned no files | Fact | Medium | Pass, source-only |
+| Preview-first commands and explicit approval | `BASS/adapters/opencode/commands/bass/create-{feature,us,ac,proposal}.md`; `BASS/adapters/opencode/agents/creator.md`; `BASS/adapters/opencode/plugins/bass-persist-approved-artifact.behavior-test.mjs:50-63` | Fact | High | Pass |
+| Templates, provenance, assumptions, and GWT | `BASS/templates/feature-template.md:26-67`; `BASS/templates/user-story-template.md:27-72`; `BASS/templates/functional-proposal-template.md:24-58`; `BASS/templates/acceptance-criteria-template.md:8-41`; `BASS/adapters/opencode/plugins/bass-creator-preview.behavior-test.mjs:39-80` | Fact | High | Pass |
+| Resolved EVD/DEC provenance lineage and links | `BASS/adapters/opencode/plugins/bass-creator-preview.ts:21-36`; `BASS/adapters/opencode/plugins/bass-creator-preview.behavior-test.mjs:27-57`; `BASS/adapters/opencode/plugins/bass-persist-approved-artifact.behavior-test.mjs:28-64` | Fact | High | Pass |
+| Explicit assumptions and assumption-only blocking | `BASS/adapters/opencode/plugins/bass-creator-preview.ts:21-36`; `BASS/adapters/opencode/plugins/bass-creator-preview.behavior-test.mjs:49-57,68-75` | Fact | High | Pass |
+| Preview integrity, approval, containment, and persistence | `BASS/adapters/opencode/plugins/bass-persist-approved-artifact.ts:14-29`; `BASS/adapters/opencode/plugins/bass-persist-approved-artifact.behavior-test.mjs:50-54,58-82,103-106` | Fact | High | Pass |
+| Scoped AC update and labeled-assumption preservation | `BASS/adapters/opencode/plugins/bass-persist-approved-artifact.ts:17-23`; `BASS/adapters/opencode/plugins/bass-persist-approved-artifact.behavior-test.mjs:55-82` | Fact | High | Pass |
+| Atomic target/artifact and register updates | `BASS/adapters/opencode/plugins/bass-persist-approved-artifact.ts:22-28`; `BASS/adapters/opencode/plugins/bass-persist-approved-artifact.behavior-test.mjs:83-99,107-135` | Fact | High | Pass |
+| Local-only Feature/User Story ADO preview and proposal promotion | `BASS/adapters/opencode/plugins/bass-creator-preview.ts:35-36`; `BASS/adapters/opencode/plugins/bass-creator-preview.behavior-test.mjs:39-47,63-83,123-127` | Fact | High | Pass |
+| No D7 ADO/MCP operation | `BASS/adapters/opencode/agents/creator.md:36-47`; `BASS/adapters/opencode/commands/bass/create-{feature,us,ac,proposal}.md`; D7 Creator/persistence TS/JS source scan recorded below | Fact | Medium | Pass, source-only |
+| Complete, partial, and promotion snapshots | `BASS/fixtures/d7-creator/{complete,partial,promotion}/request.json`; `BASS/fixtures/d7-creator/expected-*.{json,md}`; `BASS/adapters/opencode/plugins/bass-creator-preview.behavior-test.mjs:108-127` | Fact | High | Pass |
+| Portable-only delivery and no host installation | `BASS/adapters/opencode/{agents,commands,plugins}/`; workspace `.opencode/**` search returned no files | Fact | Medium | Pass, source-only |
 | Target-host and Git limitations | This report, `Portable Boundary And Limitations`; `git status --short` returned `fatal: not a git repository` | Fact | High | Limitation recorded |
 
 ## Commands And Results
 
 ```text
-node BASS/integration/opencode/plugins/bass-creator-preview.behavior-test.mjs
+node BASS/adapters/opencode/plugins/bass-creator-preview.behavior-test.mjs
 bass-creator-preview behavioral contract passed
 
-node BASS/integration/opencode/plugins/bass-persist-approved-artifact.behavior-test.mjs
+node BASS/adapters/opencode/plugins/bass-persist-approved-artifact.behavior-test.mjs
 bass-persist-approved-artifact behavioral contract passed
 ```
 
@@ -118,7 +118,7 @@ to their expected Markdown and JSON snapshots.
 
 ## Portable Boundary And Limitations
 
-- D7 runtime files are under `BASS/integration/opencode/`. No workspace host
+- D7 runtime files are under `BASS/adapters/opencode/`. No workspace host
   `.opencode/` directory was found or installed.
 - Verification is source-only. No target-host OpenCode installation, live
   ADO/MCP integration, credentials, network activity, or publication was

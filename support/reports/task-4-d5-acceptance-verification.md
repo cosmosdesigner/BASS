@@ -6,9 +6,9 @@
 sections below.** `bass-reader-ado` runner behavior was removed and is not
 executed. Source-only coverage consists only of:
 
-- `node BASS/integration/opencode/plugins/bass-context-brief.behavior-test.mjs`
-- `node BASS/integration/opencode/plugins/bass-validate-ado-read-capabilities.behavior-test.mjs`
-- `node BASS/integration/opencode/plugins/bass-reader-contract.behavior-test.mjs`
+- `node BASS/adapters/opencode/plugins/bass-context-brief.behavior-test.mjs`
+- `node BASS/adapters/opencode/plugins/bass-validate-ado-read-capabilities.behavior-test.mjs`
+- `node BASS/adapters/opencode/plugins/bass-reader-contract.behavior-test.mjs`
 
 These cover deterministic local Context Brief behavior, validator permission and
 dispatch-plan behavior, and Reader instruction/permission assertions. Target-host
@@ -16,8 +16,8 @@ MCP calls are not executed in this workspace.
 
 ## Commands
 
-- `node BASS/integration/opencode/plugins/bass-context-brief.behavior-test.mjs`
-- `node BASS/integration/opencode/plugins/bass-reader-ado.behavior-test.mjs`
+- `node BASS/adapters/opencode/plugins/bass-context-brief.behavior-test.mjs`
+- `node BASS/adapters/opencode/plugins/bass-reader-ado.behavior-test.mjs`
 
 ## Results
 

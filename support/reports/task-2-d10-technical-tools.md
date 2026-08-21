@@ -11,7 +11,7 @@ MCP, network, or host installation is used.
 Command:
 
 ```text
-node BASS/integration/opencode/plugins/bass-technical-delivery.behavior-test.mjs
+node BASS/adapters/opencode/plugins/bass-technical-delivery.behavior-test.mjs
 ```
 
 Historical RED output was not retained as a standalone artifact. The following
@@ -31,7 +31,7 @@ and `type: deployment` instead of D3 source types.
 Command:
 
 ```text
-node BASS/integration/opencode/plugins/bass-technical-delivery.behavior-test.mjs
+node BASS/adapters/opencode/plugins/bass-technical-delivery.behavior-test.mjs
 ```
 
 Result:
@@ -41,8 +41,8 @@ bass technical delivery behavioral contract passed
 ```
 
 The suite verifies D10 category-to-D3 mappings in the persistence implementation
-(`integration/opencode/plugins/bass-persist-approved-technical-evidence.js:10,28-33`)
-and behavioral contract (`integration/opencode/plugins/bass-technical-delivery.behavior-test.mjs:117-131`):
+(`adapters/opencode/plugins/bass-persist-approved-technical-evidence.js:10,28-33`)
+and behavioral contract (`adapters/opencode/plugins/bass-technical-delivery.behavior-test.mjs:117-131`):
 
 - Repository/file: `ado_repository`.
 - Pull request: `ado_pull_request`.

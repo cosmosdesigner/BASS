@@ -1,5 +1,5 @@
 Pre-repair command:
-node BASS/integration/opencode/plugins/bass-ado-executor-recovery.red-test.mjs
+node BASS/adapters/opencode/plugins/bass-ado-executor-recovery.red-test.mjs
 
 Observed expected failure:
 AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:

@@ -97,8 +97,8 @@ test("P0 OpenCode adapters serialize init and status envelopes", async () => {
     mkdirSync(source, { recursive: true })
     const files = [["bass-init-project", "init-wrapper"], ["bass-project-status", "status-wrapper"], ["bass-compose-response", "compose-wrapper"]]
     for (const [runtime, wrapper] of files) {
-      const original = fs.readFileSync(path.join(process.cwd(), "integration", "opencode", "plugins", `${runtime}.ts`), "utf8")
-      const runtimePath = path.join(process.cwd(), "integration", "opencode", "plugins", `${runtime}.js`).replace(/\\/g, "\\\\")
+      const original = fs.readFileSync(path.join(process.cwd(), "adapters", "opencode", "plugins", `${runtime}.ts`), "utf8")
+      const runtimePath = path.join(process.cwd(), "adapters", "opencode", "plugins", `${runtime}.js`).replace(/\\/g, "\\\\")
       writeFileSync(path.join(source, `${wrapper}.ts`), original.replace(`require("./${runtime}.js")`, `require("${runtimePath}")`), "utf8")
     }
     const args = ["--module", "node16", "--target", "es2022", "--moduleResolution", "node16", "--skipLibCheck", "--outDir", output, ...files.map(([, wrapper]) => path.join(source, `${wrapper}.ts`)), path.join(process.cwd(), "support", "test-support", "d9", "opencode-plugin-shim.d.ts")]

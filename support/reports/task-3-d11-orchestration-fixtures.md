@@ -7,7 +7,7 @@ The source-only D11 fixture harness deep-compares inspectable normalized outcome
 ## Commands And Results
 
 - `node BASS/test-support/d11/orchestration-fixture-harness.mjs` - passed.
-- `node BASS/integration/opencode/plugins/bass-orchestration.behavior-test.mjs` - passed (20 behavior checks).
+- `node BASS/adapters/opencode/plugins/bass-orchestration.behavior-test.mjs` - passed (20 behavior checks).
 - `node BASS/test-support/d11/orchestration-ts-plugin-load.mjs` - passed.
 
 ## Coverage

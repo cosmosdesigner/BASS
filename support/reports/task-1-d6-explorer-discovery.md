@@ -17,7 +17,7 @@
 
 ## Portable and Access Boundaries
 
-- All runtime artifacts are under `BASS/integration/opencode/`; no host
+- All runtime artifacts are under `BASS/adapters/opencode/`; no host
   `.opencode/` path was created or installed.
 - Explorer remains hidden, read-only, unable to delegate, and unable to write
   local files or Azure DevOps resources.

@@ -19,8 +19,8 @@ assertions. No target-host MCP calls run in this workspace.
 
 ## Verification
 
-- `node BASS/integration/opencode/plugins/bass-context-brief.behavior-test.mjs`
-- `node BASS/integration/opencode/plugins/bass-reader-ado.behavior-test.mjs`
+- `node BASS/adapters/opencode/plugins/bass-context-brief.behavior-test.mjs`
+- `node BASS/adapters/opencode/plugins/bass-reader-ado.behavior-test.mjs`
 
 Both commands passed. No MCP server or host installation was used.
 

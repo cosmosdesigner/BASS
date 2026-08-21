@@ -47,7 +47,7 @@ try {
   renameSync(d1ArtifactMissing, d1Artifact);
 }
 
-const harness = join(workspaceRoot, "integration", "opencode", "plugins", "bass-context-brief.behavior-test.mjs");
+const harness = join(workspaceRoot, "adapters", "opencode", "plugins", "bass-context-brief.behavior-test.mjs");
 const missingHarness = `${harness}.source-readiness-test-missing`;
 renameSync(harness, missingHarness);
 try {

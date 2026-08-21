@@ -15,7 +15,7 @@ evidence is unavailable.
 
 | Requirement | Evidence location | Outcome |
 | --- | --- | --- |
-| Cited review checks, severity gate, and canonical waiver | `BASS/integration/opencode/plugins/bass-review-artifact.js:22-42`; `bass-review-artifact.behavior-test.mjs:28-58`; `bass-d8-fixtures.behavior-test.mjs:49-73` | Pass |
+| Cited review checks, severity gate, and canonical waiver | `BASS/adapters/opencode/plugins/bass-review-artifact.js:22-42`; `bass-review-artifact.behavior-test.mjs:28-58`; `bass-d8-fixtures.behavior-test.mjs:49-73` | Pass |
 | Waiver D3 provenance completeness and Decision Log index/link | `bass-review-artifact.js:28-38`; `bass-d8-p1-p2.behavior-test.mjs:37-48`; `fixtures/d8-review/waived/{decisions/DEC-804-waiver.md,decision-log.md}` | Pass |
 | Canonical Decision Log heading, first-table schema, ID/Record cells, and unique row | `bass-review-artifact.js:29-37`; `bass-d8-p1-p2.behavior-test.mjs:46-57` | Pass |
 | Type-aware Idea and Proposal review matrix, including Proposal classification | `bass-review-artifact.js:42-55`; `templates/{idea,functional-proposal}-template.md`; `bass-d8-p1-p2.behavior-test.mjs:20-32`; `fixtures/d8-review/type-aware/` | Pass |
@@ -27,7 +27,7 @@ evidence is unavailable.
 | Exact source-only fixture oracles | `BASS/fixtures/d8-review/`; `bass-d8-fixtures.behavior-test.mjs:31-75` | Pass |
 | Emitted TypeScript/shipped JavaScript parity | `bass-review-artifact.behavior-test.mjs:64-75` | Pass |
 | No D8 ADO/MCP/network runtime operation | Focused D8 tool-source scan returned no matches; D8 agent/command contracts prohibit ADO/MCP actions | Pass, source-only |
-| Portable/no-host-install boundary | D8 runtime is under `BASS/integration/opencode/`; D8 sources prohibit host writes. Workspace `.opencode/` exists, but its baseline is unverified without Git history. | Qualified limitation |
+| Portable/no-host-install boundary | D8 runtime is under `BASS/adapters/opencode/`; D8 sources prohibit host writes. Workspace `.opencode/` exists, but its baseline is unverified without Git history. | Qualified limitation |
 
 ## Test Results
 
@@ -51,7 +51,7 @@ bass d8 P1/P2 behavioral regressions passed
 
 ## User Waiver
 
-**Scope:** Source-only D8 artifacts under `BASS/integration/opencode/` were
+**Scope:** Source-only D8 artifacts under `BASS/adapters/opencode/` were
 verified. The workspace host `.opencode/` baseline remains unverified because no
 Git history or before-state is available.
 

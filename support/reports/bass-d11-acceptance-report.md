@@ -14,19 +14,19 @@ oracles, and TypeScript wrapper compile/load regression passed.
 
 | D11 requirement | Canonical implementation and evidence locations | Status |
 | --- | --- | --- |
-| Command precedence, canonical workflow mapping, malformed-command rejection | `BASS/integration/opencode/plugins/bass-route-workflow.js`; behavior suite; `BASS/fixtures/d11-orchestration/commands/` | Pass |
-| Natural intent, least-mutating read-only selection, and one-question target/scope/write clarification | `BASS/integration/opencode/plugins/bass-route-workflow.js`; behavior suite; `BASS/fixtures/d11-orchestration/natural/` | Pass |
-| BASS-only bounded specialist coordination and structured specialist-failure propagation | `BASS/integration/opencode/agents/bass.md:42-74`; `BASS/integration/opencode/plugins/bass-route-workflow.js:32,59`; behavior test: `75-87` | Pass |
-| Read warning and non-coercing fail-closed mutation context gates, including `context_missing` with no specialist route for null/empty/false/zero/unknown values and valid D8/D9 HMAC attestations before mutation routing | `BASS/integration/opencode/plugins/bass-route-workflow.js`; behavior suite; `BASS/fixtures/d11-orchestration/blocked/` | Pass, source-only |
-| Exact six-section evidenced response envelope, complete D3 provenance, and conditional applicable Approval/Confirmation only | `BASS/integration/opencode/plugins/bass-compose-response.js`; behavior suite; self-contained expected fixture JSON | Pass |
-| One safe non-executing `/bass next` recommendation and execution/write request rejection, including synchronize, dispatch, trigger, submit, invoke, send, delete, and remove | `BASS/integration/opencode/plugins/bass-recommend-next.js:5-22`; behavior test; `BASS/fixtures/d11-orchestration/next/` | Pass |
+| Command precedence, canonical workflow mapping, malformed-command rejection | `BASS/adapters/opencode/plugins/bass-route-workflow.js`; behavior suite; `BASS/fixtures/d11-orchestration/commands/` | Pass |
+| Natural intent, least-mutating read-only selection, and one-question target/scope/write clarification | `BASS/adapters/opencode/plugins/bass-route-workflow.js`; behavior suite; `BASS/fixtures/d11-orchestration/natural/` | Pass |
+| BASS-only bounded specialist coordination and structured specialist-failure propagation | `BASS/adapters/opencode/agents/bass.md:42-74`; `BASS/adapters/opencode/plugins/bass-route-workflow.js:32,59`; behavior test: `75-87` | Pass |
+| Read warning and non-coercing fail-closed mutation context gates, including `context_missing` with no specialist route for null/empty/false/zero/unknown values and valid D8/D9 HMAC attestations before mutation routing | `BASS/adapters/opencode/plugins/bass-route-workflow.js`; behavior suite; `BASS/fixtures/d11-orchestration/blocked/` | Pass, source-only |
+| Exact six-section evidenced response envelope, complete D3 provenance, and conditional applicable Approval/Confirmation only | `BASS/adapters/opencode/plugins/bass-compose-response.js`; behavior suite; self-contained expected fixture JSON | Pass |
+| One safe non-executing `/bass next` recommendation and execution/write request rejection, including synchronize, dispatch, trigger, submit, invoke, send, delete, and remove | `BASS/adapters/opencode/plugins/bass-recommend-next.js:5-22`; behavior test; `BASS/fixtures/d11-orchestration/next/` | Pass |
 | End-to-end exact-oracle comparison of fixture-declared command/natural routes, signed gates, D3 provenance, errors, and next results | `BASS/test-support/d11/orchestration-fixture-harness.mjs`; `BASS/fixtures/d11-orchestration/expected/*.json` | Pass |
-| Portable bundle and no live host/ADO action in D11 runtime | `BASS/integration/opencode/plugins/bass-{route-workflow,compose-response,recommend-next}.js`; `BASS/README.md:253-256`; source-only scan | Pass, source-only |
-| TypeScript wrapper compilation, local-shim tool registration, and limited production-sidecar runtime delegation | `BASS/test-support/d11/orchestration-ts-plugin-load.mjs`; `BASS/integration/opencode/plugins/bass-{route-workflow,compose-response,recommend-next}.ts` | Pass, source-only wrapper regression |
+| Portable bundle and no live host/ADO action in D11 runtime | `BASS/adapters/opencode/plugins/bass-{route-workflow,compose-response,recommend-next}.js`; `BASS/README.md:253-256`; source-only scan | Pass, source-only |
+| TypeScript wrapper compilation, local-shim tool registration, and limited production-sidecar runtime delegation | `BASS/test-support/d11/orchestration-ts-plugin-load.mjs`; `BASS/adapters/opencode/plugins/bass-{route-workflow,compose-response,recommend-next}.ts` | Pass, source-only wrapper regression |
 
 ## Source-Only Execution Evidence
 
-- `node BASS/integration/opencode/plugins/bass-orchestration.behavior-test.mjs`:
+- `node BASS/adapters/opencode/plugins/bass-orchestration.behavior-test.mjs`:
   passed 25 behavioral checks.
 - `node BASS/test-support/d11/orchestration-fixture-harness.mjs`:
   `bass d11 orchestration fixture harness passed`, using self-contained complete

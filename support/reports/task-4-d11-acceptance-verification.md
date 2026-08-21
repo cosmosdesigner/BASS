@@ -16,7 +16,7 @@ operation was run.
 
 | Command | Result | Evidence |
 | --- | --- | --- |
-| `node BASS/integration/opencode/plugins/bass-orchestration.behavior-test.mjs` | Pass | 23 named behavioral checks passed, including advisory execution-verb rejection. |
+| `node BASS/adapters/opencode/plugins/bass-orchestration.behavior-test.mjs` | Pass | 23 named behavioral checks passed, including advisory execution-verb rejection. |
 | `node BASS/test-support/d11/orchestration-fixture-harness.mjs` | Pass | `bass d11 orchestration fixture harness passed`. |
 | `node BASS/test-support/d11/orchestration-ts-plugin-load.mjs` | Pass | `bass D11 TypeScript plugin load passed`. |
 
@@ -24,10 +24,10 @@ operation was run.
 
 | Requirement | Evidence location | Outcome |
 | --- | --- | --- |
-| Explicit commands select their canonical workflow and override natural intent; unknown and malformed/injection-like commands fail safely | `integration/opencode/plugins/bass-route-workflow.js:3-21,41-43`; behavior test: `13-24`; `fixtures/d11-orchestration/commands/scenarios.json` | Pass |
+| Explicit commands select their canonical workflow and override natural intent; unknown and malformed/injection-like commands fail safely | `adapters/opencode/plugins/bass-route-workflow.js:3-21,41-43`; behavior test: `13-24`; `fixtures/d11-orchestration/commands/scenarios.json` | Pass |
 | Natural intent uses the least-mutating order Understand, Discover, Review, Create, Improve, Sync/Execute ADO | `plugins/bass-route-workflow.js:24-32,45-50`; `agents/bass.md:52-55`; behavior test: `33-37`; `fixtures/d11-orchestration/natural/scenarios.json` | Pass |
 | Target, multi-item scope, and mixed read/write ambiguity produce one focused clarification rather than a guessed mutation | `plugins/bass-route-workflow.js:47-48,53`; behavior test: `26-30,39-43,66-73`; natural and command fixture oracles | Pass |
-| All supported Phase 1 commands declare/route a canonical workflow; `/bass next` and `/bass diagnose` are non-specialist utilities | `plugins/bass-route-workflow.js:3-21`; `integration/opencode/commands/bass/`; `README.md:231-239` | Pass, source review and fixture coverage |
+| All supported Phase 1 commands declare/route a canonical workflow; `/bass next` and `/bass diagnose` are non-specialist utilities | `plugins/bass-route-workflow.js:3-21`; `adapters/opencode/commands/bass/`; `README.md:231-239` | Pass, source review and fixture coverage |
 | BASS is the sole user-facing hub; specialist routes are bounded and specialist failures include stage, reason, available evidence, impact, and safe next action | `agents/bass.md:42-44,62-74`; `plugins/bass-route-workflow.js:32,59`; behavior test: `13-18,75-87` | Pass |
 | Read workflows retain cited partial-context warnings; write-capable command and natural routes accept only exact `ready`, `warning`, `blocked`, or `partial` context statuses and otherwise return `context_missing` with no specialist route | `plugins/bass-route-workflow.js`; behavior suite; `fixtures/d11-orchestration/blocked/scenarios.json` | Pass |
 | Mutation routes require canonical target and a valid, workflow/target/status/expiry/integrity-checked D8/D9 HMAC gate attestation before routing | `plugins/bass-route-workflow.js:36,61-65`; behavior test and fixture-harness negative cases | Pass, source-only target-host key simulation |
@@ -36,7 +36,7 @@ operation was run.
 | Specialist failures render useful stage, reason, evidence, impact, and safe-next-action error content without adding nonstandard response sections | `plugins/bass-compose-response.js:20-24`; behavior test: `142-150` | Pass |
 | `/bass next` returns exactly one safe recommendation, prioritizes conflict/gap/approval/confirmation appropriately, rejects execution-like requests including synchronize, dispatch, trigger, submit, invoke, send, delete, and remove, and reports `nonExecuting` | `plugins/bass-recommend-next.js:5-22`; behavior test; fixture oracle | Pass |
 | End-to-end fixture harness deep-compares fixture-declared command/natural route, signed gates, six-section envelope, complete D3 provenance, errors, and next result | `test-support/d11/orchestration-fixture-harness.mjs`; `fixtures/d11-orchestration/{natural,commands,blocked,next}/scenarios.json`; `fixtures/d11-orchestration/expected/*.json` | Pass |
-| Portable runtime remains under `BASS/integration/opencode/`; source reviewed runtime has no network, process-launch, live MCP, or ADO-client call path | `docs/superpowers/plans/2026-08-12-bass-d11-orchestration.md:19-20`; `plugins/bass-{route-workflow,compose-response,recommend-next}.js`; `README.md:253-256` | Pass, source-only |
+| Portable runtime remains under `BASS/adapters/opencode/`; source reviewed runtime has no network, process-launch, live MCP, or ADO-client call path | `docs/superpowers/plans/2026-08-12-bass-d11-orchestration.md:19-20`; `plugins/bass-{route-workflow,compose-response,recommend-next}.js`; `README.md:253-256` | Pass, source-only |
 | TypeScript plugin entries compile, register the three tools against a local shim, and delegate their valid-minimal test calls to copied production JavaScript sidecars | `test-support/d11/orchestration-ts-plugin-load.mjs:11-30`; `plugins/bass-{route-workflow,compose-response,recommend-next}.ts` | Pass, source-only wrapper-load/runtime-delegation regression |
 
 ## Host And Baseline Limitations

@@ -2,9 +2,9 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { join } from "node:path";
-import { routeWorkflow } from "../../../integration/opencode/plugins/bass-route-workflow.js";
-import { composeResponse } from "../../../integration/opencode/plugins/bass-compose-response.js";
-import { recommendNext } from "../../../integration/opencode/plugins/bass-recommend-next.js";
+import { routeWorkflow } from "../../../adapters/opencode/plugins/bass-route-workflow.js";
+import { composeResponse } from "../../../adapters/opencode/plugins/bass-compose-response.js";
+import { recommendNext } from "../../../adapters/opencode/plugins/bass-recommend-next.js";
 
 const root = fileURLToPath(new URL("../../..", import.meta.url));
 const fixtures = join(root, "support", "fixtures", "d11-orchestration");
