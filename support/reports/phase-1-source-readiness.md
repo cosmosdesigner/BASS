@@ -29,21 +29,21 @@ Executed harness IDs: `p0-project-initialization-and-routing`, `d5-context-brief
 | D8 approved improvement persistence | `integration/opencode/plugins/bass-persist-approved-improvement.behavior-test.mjs` | pass |
 | D8 fixture snapshots | `integration/opencode/plugins/bass-d8-fixtures.behavior-test.mjs` | fail |
 | D8 regressions | `integration/opencode/plugins/bass-d8-p1-p2.behavior-test.mjs` | pass |
-| D9 executor | `integration/opencode/plugins/bass-ado-executor.behavior-test.mjs` | pass |
-| D9 core findings | `integration/opencode/plugins/bass-ado-executor-core-findings.red-test.mjs` | pass |
-| D9 recovery | `integration/opencode/plugins/bass-ado-executor-recovery.red-test.mjs` | pass |
-| D9 journal | `integration/opencode/plugins/bass-ado-executor-journal.red-test.mjs` | pass |
-| D9 journal P1 | `integration/opencode/plugins/bass-ado-executor-journal-p1.red-test.mjs` | pass |
-| D9 journal durability | `integration/opencode/plugins/bass-ado-executor-journal-durability.red-test.mjs` | pass |
-| D9 journal cleanup | `integration/opencode/plugins/bass-ado-executor-journal-cleanup.red-test.mjs` | pass |
+| D9 executor | `integration/opencode/plugins/bass-ado-executor.behavior-test.mjs` | fail |
+| D9 core findings | `integration/opencode/plugins/bass-ado-executor-core-findings.red-test.mjs` | fail |
+| D9 recovery | `integration/opencode/plugins/bass-ado-executor-recovery.red-test.mjs` | fail |
+| D9 journal | `integration/opencode/plugins/bass-ado-executor-journal.red-test.mjs` | fail |
+| D9 journal P1 | `integration/opencode/plugins/bass-ado-executor-journal-p1.red-test.mjs` | fail |
+| D9 journal durability | `integration/opencode/plugins/bass-ado-executor-journal-durability.red-test.mjs` | fail |
+| D9 journal cleanup | `integration/opencode/plugins/bass-ado-executor-journal-cleanup.red-test.mjs` | fail |
 | D9 read capability validation | `integration/opencode/plugins/bass-validate-ado-read-capabilities.behavior-test.mjs` | fail |
 | D9 discovery capability validation | `integration/opencode/plugins/bass-validate-ado-discovery-capabilities.behavior-test.mjs` | fail |
-| D9 TypeScript wrapper load | `test-support/d9/ts-wrapper-load-regression.mjs` | fail |
+| D9 TypeScript wrapper load | `support/test-support/d9/ts-wrapper-load-regression.mjs` | fail |
 | D10 technical delivery | `integration/opencode/plugins/bass-technical-delivery.behavior-test.mjs` | pass |
-| D10 fixture harness | `test-support/d10/technical-delivery-fixture-harness.mjs` | fail |
+| D10 fixture harness | `support/test-support/d10/technical-delivery-fixture-harness.mjs` | fail |
 | D11 orchestration | `integration/opencode/plugins/bass-orchestration.behavior-test.mjs` | pass |
-| D11 fixture harness | `test-support/d11/orchestration-fixture-harness.mjs` | pass |
-| D11 TypeScript plugin load | `test-support/d11/orchestration-ts-plugin-load.mjs` | fail |
+| D11 fixture harness | `support/test-support/d11/orchestration-fixture-harness.mjs` | pass |
+| D11 TypeScript plugin load | `support/test-support/d11/orchestration-ts-plugin-load.mjs` | fail |
 
 ## Required D1-D4 Artifacts
 
@@ -56,13 +56,13 @@ Executed harness IDs: `p0-project-initialization-and-routing`, `d5-context-brief
 
 | Check | Source | Result |
 | --- | --- | --- |
-| Required artifact | `reports/task-4-d5-acceptance-verification.md` | pass |
-| Required artifact | `reports/task-1-d6-explorer-discovery.md` | pass |
-| Required artifact | `reports/task-4-d7-acceptance-verification.md` | pass |
-| Required artifact | `reports/task-4-d8-acceptance-verification.md` | pass |
-| Required artifact | `reports/task-4-d9-acceptance-verification.md` | pass |
-| Required artifact | `reports/task-4-d10-acceptance-verification.md` | pass |
-| Required artifact | `reports/task-4-d11-acceptance-verification.md` | pass |
+| Required artifact | `support/reports/task-4-d5-acceptance-verification.md` | pass |
+| Required artifact | `support/reports/task-1-d6-explorer-discovery.md` | pass |
+| Required artifact | `support/reports/task-4-d7-acceptance-verification.md` | pass |
+| Required artifact | `support/reports/task-4-d8-acceptance-verification.md` | pass |
+| Required artifact | `support/reports/task-4-d9-acceptance-verification.md` | pass |
+| Required artifact | `support/reports/task-4-d10-acceptance-verification.md` | pass |
+| Required artifact | `support/reports/task-4-d11-acceptance-verification.md` | pass |
 
 ## Documentation And Demo Paths
 
@@ -121,11 +121,18 @@ Every target-host matrix check is declarative and remains pending until recorded
 - Failed local harness: `integration/opencode/plugins/bass-persist-approved-artifact.behavior-test.mjs`.
 - Failed local harness: `integration/opencode/plugins/bass-review-artifact.behavior-test.mjs`.
 - Failed local harness: `integration/opencode/plugins/bass-d8-fixtures.behavior-test.mjs`.
+- Failed local harness: `integration/opencode/plugins/bass-ado-executor.behavior-test.mjs`.
+- Failed local harness: `integration/opencode/plugins/bass-ado-executor-core-findings.red-test.mjs`.
+- Failed local harness: `integration/opencode/plugins/bass-ado-executor-recovery.red-test.mjs`.
+- Failed local harness: `integration/opencode/plugins/bass-ado-executor-journal.red-test.mjs`.
+- Failed local harness: `integration/opencode/plugins/bass-ado-executor-journal-p1.red-test.mjs`.
+- Failed local harness: `integration/opencode/plugins/bass-ado-executor-journal-durability.red-test.mjs`.
+- Failed local harness: `integration/opencode/plugins/bass-ado-executor-journal-cleanup.red-test.mjs`.
 - Failed local harness: `integration/opencode/plugins/bass-validate-ado-read-capabilities.behavior-test.mjs`.
 - Failed local harness: `integration/opencode/plugins/bass-validate-ado-discovery-capabilities.behavior-test.mjs`.
-- Failed local harness: `test-support/d9/ts-wrapper-load-regression.mjs`.
-- Failed local harness: `test-support/d10/technical-delivery-fixture-harness.mjs`.
-- Failed local harness: `test-support/d11/orchestration-ts-plugin-load.mjs`.
+- Failed local harness: `support/test-support/d9/ts-wrapper-load-regression.mjs`.
+- Failed local harness: `support/test-support/d10/technical-delivery-fixture-harness.mjs`.
+- Failed local harness: `support/test-support/d11/orchestration-ts-plugin-load.mjs`.
 - Every configured D5-D11 harness ID executed.
 - All required D1-D4 artifacts exist.
 - All configured prior acceptance reports exist.

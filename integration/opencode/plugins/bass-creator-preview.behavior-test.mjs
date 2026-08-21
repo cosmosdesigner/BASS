@@ -6,7 +6,7 @@ import { fileURLToPath, pathToFileURL } from "node:url"
 import { execSync } from "node:child_process"
 
 const pluginRoot = new URL(".", import.meta.url)
-const fixtureRoot = fileURLToPath(new URL("../../../fixtures/d7-creator/", pluginRoot))
+const fixtureRoot = fileURLToPath(new URL("../../../support/fixtures/d7-creator/", pluginRoot))
 const source = readFileSync(fileURLToPath(new URL("bass-creator-preview.ts", pluginRoot)), "utf8")
 const root = mkdtempSync(join(tmpdir(), "bass-creator-preview-"))
 const write = (path, text) => { mkdirSync(join(path, ".."), { recursive: true }); writeFileSync(path, text) }

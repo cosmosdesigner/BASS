@@ -3,7 +3,7 @@ import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } f
 import { join, relative } from "node:path"
 import { tmpdir } from "node:os"
 
-const fixtures = new URL("../../../fixtures/d8-review/", import.meta.url)
+const fixtures = new URL("../../../support/fixtures/d8-review/", import.meta.url)
 const root = mkdtempSync(join(tmpdir(), "bass-d8-fixtures-"))
 const normalize = (value) => {
   if (typeof value === "string") return value
@@ -13,11 +13,11 @@ const normalize = (value) => {
   if (value && typeof value === "object") return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, normalize(item)]))
   return value
 }
-const expected = (name) => JSON.parse(readFileSync(new URL(`../../../fixtures/d8-review/${name}`, import.meta.url), "utf8"))
+const expected = (name) => JSON.parse(readFileSync(new URL(`../../../support/fixtures/d8-review/${name}`, import.meta.url), "utf8"))
 const stage = (name, artifactDirectory) => {
   const host = join(root, name)
   const project = join(host, "BASS", "projects", "project")
-  cpSync(new URL(`../../../fixtures/d8-review/${name}/`, import.meta.url), project, { recursive: true })
+  cpSync(new URL(`../../../support/fixtures/d8-review/${name}/`, import.meta.url), project, { recursive: true })
   mkdirSync(join(project, "features", artifactDirectory), { recursive: true })
   cpSync(join(project, "feature.md"), join(project, "features", artifactDirectory, "feature.md"))
   return { host, artifactDirectory }

@@ -6,7 +6,7 @@ import { fileURLToPath, pathToFileURL } from "node:url"
 import { execSync } from "node:child_process"
 
 const pluginRoot = new URL(".", import.meta.url)
-const fixturesRoot = fileURLToPath(new URL("../../../fixtures/d6-discovery", pluginRoot))
+const fixturesRoot = fileURLToPath(new URL("../../../support/fixtures/d6-discovery", pluginRoot))
 const root = mkdtempSync(join(tmpdir(), "bass-discovery-"))
 const source = (id, classification = "Fact", extra = "") => `provenance:\n  classification: ${classification}\n  sources:\n    - type: local_file\n      reference: records/${id}\n      location: ${id}\n${extra}  confidence: high\n`
 const write = (path, contents) => { mkdirSync(join(path, ".."), { recursive: true }); writeFileSync(path, contents) }

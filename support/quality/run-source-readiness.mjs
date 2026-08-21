@@ -3,11 +3,11 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const bassRoot = fileURLToPath(new URL("..", import.meta.url));
+const bassRoot = fileURLToPath(new URL("../..", import.meta.url));
 const workspaceRoot = bassRoot;
 const resolveWorkspacePath = (path) => join(workspaceRoot, path);
-const expectedPath = join(bassRoot, "quality", "expected-source-readiness.json");
-const reportPath = join(bassRoot, "reports", "phase-1-source-readiness.md");
+const expectedPath = join(bassRoot, "support", "quality", "expected-source-readiness.json");
+const reportPath = join(bassRoot, "support", "reports", "phase-1-source-readiness.md");
 const expected = JSON.parse(readFileSync(expectedPath, "utf8"));
 
 const harnesses = [
@@ -32,22 +32,22 @@ const harnesses = [
   ["D9 journal cleanup", "integration/opencode/plugins/bass-ado-executor-journal-cleanup.red-test.mjs"],
   ["D9 read capability validation", "integration/opencode/plugins/bass-validate-ado-read-capabilities.behavior-test.mjs"],
   ["D9 discovery capability validation", "integration/opencode/plugins/bass-validate-ado-discovery-capabilities.behavior-test.mjs"],
-  ["D9 TypeScript wrapper load", "test-support/d9/ts-wrapper-load-regression.mjs"],
+  ["D9 TypeScript wrapper load", "support/test-support/d9/ts-wrapper-load-regression.mjs"],
   ["D10 technical delivery", "integration/opencode/plugins/bass-technical-delivery.behavior-test.mjs"],
-  ["D10 fixture harness", "test-support/d10/technical-delivery-fixture-harness.mjs"],
+  ["D10 fixture harness", "support/test-support/d10/technical-delivery-fixture-harness.mjs"],
   ["D11 orchestration", "integration/opencode/plugins/bass-orchestration.behavior-test.mjs"],
-  ["D11 fixture harness", "test-support/d11/orchestration-fixture-harness.mjs"],
-  ["D11 TypeScript plugin load", "test-support/d11/orchestration-ts-plugin-load.mjs"]
+  ["D11 fixture harness", "support/test-support/d11/orchestration-fixture-harness.mjs"],
+  ["D11 TypeScript plugin load", "support/test-support/d11/orchestration-ts-plugin-load.mjs"]
 ].map(([name, path]) => ({ id: name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""), name, path }));
 
 const reports = [
-  "reports/task-4-d5-acceptance-verification.md",
-  "reports/task-1-d6-explorer-discovery.md",
-  "reports/task-4-d7-acceptance-verification.md",
-  "reports/task-4-d8-acceptance-verification.md",
-  "reports/task-4-d9-acceptance-verification.md",
-  "reports/task-4-d10-acceptance-verification.md",
-  "reports/task-4-d11-acceptance-verification.md"
+  "support/reports/task-4-d5-acceptance-verification.md",
+  "support/reports/task-1-d6-explorer-discovery.md",
+  "support/reports/task-4-d7-acceptance-verification.md",
+  "support/reports/task-4-d8-acceptance-verification.md",
+  "support/reports/task-4-d9-acceptance-verification.md",
+  "support/reports/task-4-d10-acceptance-verification.md",
+  "support/reports/task-4-d11-acceptance-verification.md"
 ];
 
 const runHarness = ({ id, name, path }) => {

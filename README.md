@@ -97,4 +97,4 @@ This requires an isolated target-ready environment. BASS shows the exact field-l
 
 ## Source Boundary
 
-This repository contains only the BASS source bundle. Host installations, project instances, generated packages, and supplemental documentation are intentionally maintained outside this source tree.
+This repository contains the BASS source bundle. Runtime source remains under `integration/`, while fixtures, quality checks, reports, and test harnesses are separated under `support/`. Host installations, project instances, generated packages, and supplemental documentation are intentionally maintained outside this source tree.

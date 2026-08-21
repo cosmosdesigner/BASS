@@ -4,7 +4,7 @@ import { spawnSync } from "node:child_process";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const workspaceRoot = fileURLToPath(new URL("..", import.meta.url));
+const workspaceRoot = fileURLToPath(new URL("../..", import.meta.url));
 const bassRoot = workspaceRoot;
 const runner = fileURLToPath(new URL("./run-source-readiness.mjs", import.meta.url));
 const expectedPath = fileURLToPath(new URL("./expected-source-readiness.json", import.meta.url));

@@ -35,7 +35,7 @@
 | D2 workspace context model | Project context, canonical registers, and template paths | Confirm isolated-project workspace setup | BASS owner | source_ready |
 | D3 provenance and decisions | Evidence Register, Decision Log, Action Log, templates, and prior reports | Confirm target-host evidence links and operation records | BASS owner | source_ready |
 | D4 OpenCode foundation | `BASS/integration/opencode/` agents, commands, and plugins | Confirm target-host discovery and installation compatibility | BASS owner | source_ready |
-| D5-D11 acceptance reports | `BASS/reports/task-*-d*-acceptance-verification.md` and D6 Task 1 report | Retain target-host validation evidence alongside each capability | D5-D11 owners | source_ready |
+| D5-D11 acceptance reports | `BASS/support/reports/task-*-d*-acceptance-verification.md` and D6 Task 1 report | Retain target-host validation evidence alongside each capability | D5-D11 owners | source_ready |
 | Documentation and demos | D12 Task 3 paths checked by `run-source-readiness.mjs` | Run source and isolated target-host demos with recorded evidence | D12 owner | source_ready |
 | Full Feature-to-publication workflow | Source harnesses and source demo only | Isolated ADO Feature, User Story, review, confirmed Work Item operations, repository/PR/pipeline/deployment evidence | D12 owner | target_ready |
 

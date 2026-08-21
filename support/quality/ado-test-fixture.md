@@ -17,7 +17,7 @@ All names below are declarative placeholders. The operator replaces `<RUN_ID>` o
 
 ## Source-Readiness Gate
 
-Before evaluating any target-host evidence for readiness, run `node BASS/quality/run-source-readiness.mjs` and retain the current `BASS/reports/phase-1-source-readiness.md` report with its command output in the private run manifest. The report must state `source_ready` and contain `executedHarnesIds` equal to the exact complete `configuredHarnessIds` set. A prior report, an incomplete run, an omitted or failed configured D5-D11 harness, an environment-based skip, or a manually edited report is not sufficient.
+Before evaluating any target-host evidence for readiness, run `node BASS/support/quality/run-source-readiness.mjs` and retain the current `BASS/support/reports/phase-1-source-readiness.md` report with its command output in the private run manifest. The report must state `source_ready` and contain `executedHarnesIds` equal to the exact complete `configuredHarnessIds` set. A prior report, an incomplete run, an omitted or failed configured D5-D11 harness, an environment-based skip, or a manually edited report is not sufficient.
 
 When the current report states `blocked`, the operator may perform isolated target-host checks only as exploratory work. Label every resulting record `Question` or `Fact` as appropriate, retain it for diagnosis, and do not evaluate it as target-readiness evidence or claim `target_ready`. Re-run source readiness after its blockers are resolved before beginning a target-ready evaluation.
 

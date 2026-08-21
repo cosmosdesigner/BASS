@@ -4,9 +4,9 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { validateAdoWriteCapabilities } from "./bass-validate-ado-write-capabilities.js";
 process.env.BASS_TOKEN_SIGNING_KEY = "source-only-test-token-signing-key";
-import { createPlannerHarness } from "../../../test-support/d9/executor-harness.mjs";
+import { createPlannerHarness } from "../../../support/test-support/d9/executor-harness.mjs";
 import { compareAdoSync } from "./bass-compare-ado-sync.js";
-import { createExecutorHarness } from "../../../test-support/d9/executor-harness.mjs";
+import { createExecutorHarness } from "../../../support/test-support/d9/executor-harness.mjs";
 let trustedContext, planAdoOperation, executeTrusted; const executeConfirmedAdoOperation = (input) => executeTrusted({ ...input, dispatchDurability: input.dispatchDurability || { syncFile: () => "fsynced", syncDirectory: () => "fsynced" }, recoveryDurability: input.recoveryDurability || { syncFile: () => "fsynced", syncDirectory: () => "fsynced" }, outcomeDurability: input.outcomeDurability || { syncFile: () => "fsynced", syncDirectory: () => "fsynced" } });
 
 const root = mkdtempSync(join(tmpdir(), "bass-d9-core-red-"));

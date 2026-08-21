@@ -3,11 +3,11 @@ import { cpSync, mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } f
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
-import report from "../../integration/opencode/plugins/bass-technical-delivery-report.js";
-import persistence from "../../integration/opencode/plugins/bass-persist-approved-technical-evidence.js";
+import report from "../../../integration/opencode/plugins/bass-technical-delivery-report.js";
+import persistence from "../../../integration/opencode/plugins/bass-persist-approved-technical-evidence.js";
 
-const root = fileURLToPath(new URL("../..", import.meta.url));
-const fixtures = join(root, "fixtures", "d10-technical");
+const root = fileURLToPath(new URL("../../..", import.meta.url));
+const fixtures = join(root, "support", "fixtures", "d10-technical");
 const normalize = (value, workspace) => JSON.parse(JSON.stringify(value)
   .replaceAll(JSON.stringify(workspace).slice(1, -1), "<workspace>")
   .replaceAll(workspace.replaceAll("\\", "/"), "<workspace>")

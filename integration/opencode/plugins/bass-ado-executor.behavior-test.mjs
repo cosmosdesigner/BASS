@@ -6,7 +6,7 @@ import { validateAdoWriteCapabilities } from "./bass-validate-ado-write-capabili
 import plannerRuntime from "./bass-plan-ado-operation.js";
 import { compareAdoSync } from "./bass-compare-ado-sync.js";
 import executorRuntime, { BassExecuteConfirmedAdoOperationPlugin, consumed, executeConfirmedAdoOperation as rawExecuteRuntime } from "./bass-execute-confirmed-ado-operation.js";
-import { canonical, createExecutorHarness, createPlannerHarness, hash } from "../../../test-support/d9/executor-harness.mjs";
+import { canonical, createExecutorHarness, createPlannerHarness, hash } from "../../../support/test-support/d9/executor-harness.mjs";
 const dispatchDurability = { syncFile: () => "fsynced", syncDirectory: () => "fsynced" };
 const tokenSigningKey = "source-only-test-token-signing-key";
 process.env.BASS_TOKEN_SIGNING_KEY = tokenSigningKey;
@@ -175,7 +175,7 @@ console.log("bass-ado-executor behavior tests passed");
 
 // Fixture outcomes are normalized so source-only assertions do not depend on UUIDs,
 // hashes, timestamps, or host-specific temporary paths.
-const fixtureRoot = join(import.meta.dirname, "../../../fixtures/d9-executor");
+const fixtureRoot = join(import.meta.dirname, "../../../support/fixtures/d9-executor");
 const fixture = (directory, name) => JSON.parse(readFileSync(join(fixtureRoot, directory, name), "utf8"));
 const normalized = (value) => JSON.parse(JSON.stringify(value, (key, item) =>
   ["tokenId", "integrityHash", "confirmation", "createdAt", "expiresAt", "actionLogId", "recoveryPath", "journalPath"].includes(key) ? `<${key}>` : item));

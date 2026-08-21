@@ -7,7 +7,7 @@ import { execSync } from "node:child_process"
 
 const pluginRoot = new URL(".", import.meta.url)
 const sourceRoot = new URL("../../../../", pluginRoot)
-const fixturesRoot = fileURLToPath(new URL("../../../fixtures/d5-context", pluginRoot))
+const fixturesRoot = fileURLToPath(new URL("../../../support/fixtures/d5-context", pluginRoot))
 const root = mkdtempSync(join(tmpdir(), "bass-context-brief-"))
 
 function write(path, contents) { mkdirSync(join(path, ".."), { recursive: true }); writeFileSync(path, contents) }

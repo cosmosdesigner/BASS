@@ -20,7 +20,7 @@ try {
 
   const typeHost = join(root, "type-aware"), typeProject = join(typeHost, "BASS", "projects", "project")
   for (const [fixture, relative] of [["idea.md", "ideas/IDEA-901-guided-onboarding/idea.md"], ["proposal.md", "proposals/PRO-901-guided-onboarding/proposal.md"]]) {
-    write(join(typeProject, ...relative.split("/")), readFileSync(new URL(`../../../fixtures/d8-review/type-aware/${fixture}`, import.meta.url), "utf8"))
+    write(join(typeProject, ...relative.split("/")), readFileSync(new URL(`../../../support/fixtures/d8-review/type-aware/${fixture}`, import.meta.url), "utf8"))
     const report = reviewArtifact({ directory: typeHost, projectName: "project", artifactPath: relative })
     assert.notEqual(report.status, "blocked", `${fixture} should not inherit Feature-only blockers`)
     assert.equal(report.findings.some((item) => ["completeness", "dependencies", "risks", "testability", "provenance"].includes(item.check)), false, `${fixture} type matrix`)
