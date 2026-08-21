@@ -1,0 +1,9 @@
+{
+  "scenarios": [
+    { "id": "absent-confirmation", "confirmed": false, "operation": { "category": "fields", "kind": "update_field", "workItemType": "Feature", "workItemId": "51", "changes": [{ "field": "title", "before": "Old", "after": "New" }] } },
+    { "id": "expired-token", "confirmed": true, "ttlMs": 1, "now": "2026-08-15T00:01:00.000Z", "operation": { "category": "fields", "kind": "update_field", "workItemType": "Feature", "workItemId": "52", "changes": [{ "field": "title", "before": "Old", "after": "New" }] } },
+    { "id": "tampered-hash", "confirmed": true, "mutation": "hash", "operation": { "category": "fields", "kind": "update_field", "workItemType": "Feature", "workItemId": "53", "changes": [{ "field": "title", "before": "Old", "after": "New" }] } },
+    { "id": "mutated-operation", "confirmed": true, "mutation": "operation", "operation": { "category": "tags", "kind": "add_tag", "workItemType": "Feature", "workItemId": "54", "changes": [{ "tag": "urgent", "before": false, "after": true }] } },
+    { "id": "replay", "confirmed": true, "replay": true, "operation": { "category": "fields", "kind": "update_field", "workItemType": "Feature", "workItemId": "55", "changes": [{ "field": "title", "before": "Old", "after": "New" }] } }
+  ]
+}

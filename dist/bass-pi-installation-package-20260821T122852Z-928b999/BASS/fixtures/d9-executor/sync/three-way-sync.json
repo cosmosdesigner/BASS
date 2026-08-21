@@ -1,0 +1,7 @@
+{
+  "scenarios": [
+    { "id": "sync-local-to-ado", "input": { "fields": ["title"], "baseline": { "title": "Base" }, "local": { "title": "Local" }, "ado": { "title": "Base" } } },
+    { "id": "sync-ado-to-local", "input": { "fields": ["title"], "baseline": { "title": "Base" }, "local": { "title": "Base" }, "ado": { "title": "ADO" } } },
+    { "id": "sync-overlap-conflict", "input": { "fields": ["title"], "baseline": { "title": "Base" }, "local": { "title": "Local" }, "ado": { "title": "ADO" } } }
+  ]
+}

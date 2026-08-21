@@ -1,0 +1,5 @@
+Pre-repair command:
+node BASS/integration/opencode/plugins/bass-ado-executor-journal.red-test.mjs
+
+Expected pre-repair failure:
+the executor has no `interruptAfterImportRename` state, no durable import journal, and `writeRecovery` writes the same recovery path repeatedly. The test therefore fails when it expects status `interrupted` and a journal after the first replacement.

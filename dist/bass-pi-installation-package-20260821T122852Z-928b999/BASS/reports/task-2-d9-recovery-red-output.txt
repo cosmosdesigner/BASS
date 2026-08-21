@@ -1,0 +1,11 @@
+Pre-repair command:
+node BASS/integration/opencode/plugins/bass-ado-executor-recovery.red-test.mjs
+
+Observed expected failure:
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'ready_for_confirmation'
+- 'blocked'
+
+Root cause: planner accepted localUpdate.values.hidden even though it was absent from the token field diff and configured field map. The same pre-repair runtime also had no injected second-replace rollback, pre-dispatch recovery preparation, or schema-compatible recovery log path.

@@ -1,0 +1,19 @@
+{
+  "artifactPath": "features/F-804-waived/feature.md",
+  "artifactVersion": "v1.0",
+  "status": "blocked",
+  "findings": [{
+    "id": "REV-412ebb973c22b0fb",
+    "severity": "Major",
+    "check": "testability",
+    "evidence": "## Given/When/Then Acceptance Criteria at line 37 is nonconforming.",
+    "location": "features/F-804-waived/feature.md:37",
+    "fingerprint": "<integrity-hash>",
+    "impact": "The artifact has no testable acceptance criteria.",
+    "recommendation": "Provide cited canonical artifact content; do not infer missing content.",
+    "status": "open"
+  }],
+  "unresolvedQuestions": [],
+  "reviewDecision": "blocked pending resolution or Decision waiver",
+  "sources": [{ "path": "features/F-804-waived/feature.md", "location": "artifact" }]
+}

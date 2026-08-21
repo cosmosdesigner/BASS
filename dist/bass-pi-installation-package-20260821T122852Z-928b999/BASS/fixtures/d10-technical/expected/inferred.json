@@ -1,0 +1,9 @@
+{
+  "status": "warning",
+  "releaseState": "unknown",
+  "evidence": [
+    { "category": "repository", "source": "ADO Repository", "location": "refs/heads/feature/customer-onboarding", "branch": "feature/customer-onboarding", "classification": "Inference", "confidence": "low", "basis": "branch" },
+    { "category": "commit", "source": "ADO Repository", "location": "def456", "commitMessage": "Customer onboarding validation", "classification": "Inference", "confidence": "low", "basis": "commitMessage" },
+    { "category": "repository", "source": "ADO Repository", "location": "src/onboarding.ts", "fileText": "Customer onboarding workflow", "classification": "Inference", "confidence": "low", "basis": "fileText" }
+  ]
+}

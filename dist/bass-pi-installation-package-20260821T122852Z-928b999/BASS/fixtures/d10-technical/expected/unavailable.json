@@ -1,0 +1,7 @@
+{
+  "status": "warning",
+  "releaseState": "unknown",
+  "evidence": [
+    { "category": "pipeline", "source": "ADO Pipeline", "location": "pipeline read unavailable", "workItemIds": ["1001"], "status": "unauthorized", "blocker": "Pipeline read is unauthorized; map a verified read-only capability.", "classification": "Fact", "confidence": "high", "basis": "" }
+  ]
+}
